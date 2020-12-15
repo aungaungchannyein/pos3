@@ -53,7 +53,7 @@
 
                 foreach ($user as $key => $value) {
 
-                  echo'<tr><td>1</td>
+                  echo'<tr><td>'.($key+1).'</td>
                       <td>'.$value["name"].'</td>
                       <td>'.$value["user"].'</td>';
                       if($value["photo"]!=""){

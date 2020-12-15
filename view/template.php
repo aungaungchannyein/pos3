@@ -111,5 +111,6 @@ session_start();
 
  <script src="view/js/template.js"></script>
  <script src="view/js/user.js"></script>
+ <script src="view/js/category.js"></script>
 </body>
 </html>
