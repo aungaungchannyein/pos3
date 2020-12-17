@@ -26,6 +26,9 @@ session_start();
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="view/dist/css/skins/_all-skins.min.css">
 
+   <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="view/plugins/iCheck/all.css">
+
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
@@ -49,6 +52,11 @@ session_start();
 
 
 <script src="view/plugins/sweetalert2/sweetalert2.all.js"></script>
+
+ 
+
+<!-- iCheck 1.0.1 -->
+<script src="view/plugins/iCheck/icheck.min.js"></script>
   </head>
 <body class="hold-transition skin-blue sider-collapse sidebar-mini login-page">
 <!-- Site wrapper -->
@@ -112,5 +120,6 @@ session_start();
  <script src="view/js/template.js"></script>
  <script src="view/js/user.js"></script>
  <script src="view/js/category.js"></script>
+ <script src="view/js/product.js"></script>
 </body>
 </html>
