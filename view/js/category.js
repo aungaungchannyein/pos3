@@ -4,7 +4,7 @@ $(document).on("click", ".btnEditCategory", function(){
 
 	var data= new FormData();
 	data.append("idCategory",idCategory);
-	console.log("reponse",idCategory);
+
 
 	$.ajax({
 		url:"ajax/category.ajax.php",

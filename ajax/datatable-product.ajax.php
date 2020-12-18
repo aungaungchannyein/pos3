@@ -24,8 +24,11 @@ class TableProduct{
   for($i=0; $i<count($product); $i++){
   	if($product[$i]["photo"]!=null){
   			$image="<img src='".$product[$i]["photo"]."' width='40px'>";
-  	}
-  	$image="<img src='view/img/products/default/anonymous.png' width='40px'>";
+	}else{
+    $image="<img src='view/img/products/default/anonymous.png' width='40px'>";
+
+  }
+  	
 
   	$item="id";
   	$value=$product[$i]["id_category"];
@@ -39,7 +42,7 @@ class TableProduct{
   	}
   	
 
-  	$button="<div class='btn-group'><button class='btn btn-warning btnEditProduct' idUser='".$product[$i]["id"]."' data-toggle='modal' data-target='#modalEditProduct'><i class='fa fa-pencil'></i></button><button class='btn btn-danger'><i class='fa fa-times btnDeleteProduct' productId='".$product[$i]["id"]."' productPhoto='".$product[$i]["photo"]."' productCode='".$product[$i]["code"]."'></i></button></div>";
+  	$button="<div class='btn-group'><button class='btn btn-warning btnEditProduct' idProduct='".$product[$i]["id"]."' data-toggle='modal' data-target='#modalEditProduct'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnDeleteProduct' productId='".$product[$i]["id"]."' productPhoto='".$product[$i]["photo"]."' productCode='".$product[$i]["code"]."'><i class='fa fa-times'></i></button></div>";
 
   	$dataJson.='
     [

@@ -107,7 +107,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-              <input type="text" class="form-control input-group-lg" name="newDescription" placeholder="enter Description " required >
+              <input type="text" class="form-control input-group-lg" name="newDescription" id="newDescription" placeholder="enter Description " required >
             </div>
           </div>
        
@@ -117,24 +117,24 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-check"></i></span>
-              <input type="number" class="form-control input-group-lg" name="newStock" min="0" placeholder="Stock " required >
+              <input type="number" class="form-control input-group-lg" name="newStock" id="newStock" min="0" placeholder="Stock " required >
             </div>
           </div>
 
           <div class="form-group row">
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-sm-6">
                  <div class="form-group">
                     <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                    <input type="number" class="form-control input-group-lg" name="newbuyprice" id="newbuyprice" min="0" placeholder="Buying price('ဝယ် ဈေး')" required >
+                    <input type="number" class="form-control input-group-lg" name="newBuyprice" id="newBuyprice" min="0" step="any" placeholder="Buying price('ဝယ် ဈေး')" required >
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-sm-6">
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                  <input type="number" class="form-control input-group-lg" name="newsaleprice" id="newsaleprice" min="0" placeholder="Selling price('ရောင်း ဈေး')" required >
+                  <input type="number" class="form-control input-group-lg" name="newSaleprice" id="newSaleprice" min="0" step="any" placeholder="Selling price('ရောင်း ဈေး')" required >
                </div>
             </div>
             <br>
@@ -148,7 +148,7 @@
             </div>
             <div class="col-xs-6">
               <div class="input-group">
-                <input type="number" class="form-control input-group-lg newpercentage" min="0" value="40" required>
+                <input type="number" class="form-control input-group-lg newPercentage" min="0" value="40" required>
                 <span class="input-group-addon"><i class="fa fa-percent"></i></span>
               </div>
             </div>
@@ -168,9 +168,9 @@
 
           <div class="form-group">
             <div class="panel">Add Photo</div>
-            <input type="file" id="newPhoto" name="newPhoto">
+            <input type="file" class="newPhoto" id="newPhoto" name="newPhoto">
             <p class="help-block">maximum of 2MB</p>
-            <img src="view/img/users/default/anonymous.png" class="img-thumbnail" width="100px">
+            <img src="view/img/products/default/anonymous.png" class="img-thumbnail preview" width="100px">
           </div>
         </div>
       </div>
@@ -180,13 +180,18 @@
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save Change </button>
       </div>
+       
         </form>
+
+        <?php
+        $createProduct=new ProductController();
+        $createProduct->ctrCreateProduct();
+          ?>
 
       </div>
 
     </div>
   </div>
-
 
   <div id="modalEditProduct" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -198,62 +203,63 @@
       
       <div class="modal-header" style="background-color: #3c8dbc; color: white">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add Product</h4>
+        <h4 class="modal-title">Edit Product</h4>
       </div>
 
       <div class="modal-body">
         <div class="box-body">
+
+           <!-- Entry for Category -->
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-th"></i></span>
+              <select class="form-control input-group-lg" name="editCategory" readonly required>
+                <option id="editCategory">Select Category</option>
+
+                
+              </select>
+            </div>
+          </div>
 <!-- 
           Entry for name -->
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-code"></i></span>
-              <input type="text" class="form-control input-group-lg" name="newCode" placeholder="enter code" required >
+              <input type="text" class="form-control input-group-lg" name="editCode" id="editCode" placeholder="enter code" required readonly >
             </div>
           </div>
         <!-- Entry for user  -->
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-              <input type="text" class="form-control input-group-lg" name="newDescription" placeholder="enter Description " required >
+              <input type="text" class="form-control input-group-lg" name="editDescription" id="editDescription" placeholder="enter Description " required >
             </div>
           </div>
        
-          <!-- Entry for Category -->
-          <div class="form-group">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-th"></i></span>
-              <select class="form-control input-group-lg" name="newProfile">
-                <option value="">Select Category</option>
-                <option value="administrator">Administrator</option>
-                <option value="special">Special</option>
-                <option value="seller">Seller</option>
-              </select>
-            </div>
-          </div>
+         
 
            <!-- Entry for user  -->
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-check"></i></span>
-              <input type="number" class="form-control input-group-lg" name="newStock" min="0" placeholder="Stock " required >
+              <input type="number" class="form-control input-group-lg" name="editStock" id="editStock" min="0" required >
             </div>
           </div>
 
           <div class="form-group row">
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-sm-6">
                  <div class="form-group">
                     <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                    <input type="number" class="form-control input-group-lg" name="newbuyprice" min="0" placeholder="Buying price('ဝယ် ဈေး')" required >
+                    <input type="number" class="form-control input-group-lg" name="editBuyprice" id="editBuyprice" min="0" step="any" required >
                     </div>
                 </div>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-sm-6">
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                  <input type="number" class="form-control input-group-lg" name="newsaleprice" min="0" placeholder="Selling price('ရောင်း ဈေး')" required >
+                  <input type="number" class="form-control input-group-lg" name="editSaleprice" id="editSaleprice" min="0" step="any" readonly required >
                </div>
             </div>
             <br>
@@ -267,29 +273,19 @@
             </div>
             <div class="col-xs-6">
               <div class="input-group">
-                <input type="number" class="form-control input-group-lg newpercentage" min="0" value="40" required>
+                <input type="number" class="form-control input-group-lg newPercentage" min="0" value="40" required>
                 <span class="input-group-addon"><i class="fa fa-percent"></i></span>
               </div>
             </div>
 
             </div>
-            
-
           </div>
-
-
-
-
-
-        
-
-        
-
           <div class="form-group">
             <div class="panel">Add Photo</div>
-            <input type="file" id="newPhoto" name="newPhoto">
+            <input type="file" class="newPhoto" id="editPhoto" name="editPhoto">
             <p class="help-block">maximum of 2MB</p>
-            <img src="view/img/users/default/anonymous.png" class="img-thumbnail" width="100px">
+            <img src="view/img/products/default/anonymous.png" class="img-thumbnail preview" width="100px">
+            <input type="hidden" name="currentPhoto" id="currentPhoto" value="">
           </div>
         </div>
       </div>
@@ -299,9 +295,24 @@
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save Change </button>
       </div>
+   
+       
         </form>
+
+
+        <?php
+        $editProduct=new ProductController();
+        $editProduct->ctrEditProduct();
+          ?>
 
       </div>
 
     </div>
   </div>
+ <?php
+
+  $deleteProduct=new ProductController();
+  $deleteProduct-> ctrDeleteProduct();
+
+  ?> 
+ 
