@@ -11,6 +11,7 @@ class UserController
 			 {
 
 			 	$encryptpass = crypt($_POST["password"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+		
 
 			 	$table="user";
 

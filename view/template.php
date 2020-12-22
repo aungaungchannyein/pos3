@@ -57,7 +57,13 @@ session_start();
 
 <!-- iCheck 1.0.1 -->
 <script src="view/plugins/iCheck/icheck.min.js"></script>
+
+<!-- InputMask -->
+<script src="view/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="view/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="view/plugins/input-mask/jquery.inputmask.extensions.js"></script>
   </head>
+
 <body class="hold-transition skin-blue sider-collapse sidebar-mini login-page">
 <!-- Site wrapper -->
  <?php
