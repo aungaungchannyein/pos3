@@ -12,7 +12,7 @@
 			   preg_match('/^[()\-0-9 ]+$/', $_POST["newPhone"]) && 
 			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["newAddress"])){*/
 					$table="client";
-					$data = array("name"=>"Hlea",
+					$data = array("name"=>$_POST["name"],
 					           "document_id"=>$_POST["newDocumentId"],
 					           "email"=>$_POST["newEmail"],
 					           "phone"=>$_POST["newPhone"],
@@ -63,6 +63,13 @@
 
 			}
 			}
+
+		}
+
+		static public function ctrShowClient($item,$value){
+			$table="client";
+			$answer=ModelClient::mdlShowCLient($table,$item,$value);
+			return $answer;
 
 		}
 	}
