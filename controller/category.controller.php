@@ -148,7 +148,7 @@ class CategoryController{
 					
 					swal({
 						type: "success",
-						title: "User was delete",
+						title: "Category was delete",
 						showConfirmButton: true,
 						confirmButtonText: "Close"
 			

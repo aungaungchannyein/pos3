@@ -208,8 +208,8 @@
 
        </form>
               <?php
-        $createCategory=new ClientController();
-        $createCategory-> ctrCreateClient();
+        $createClient=new ClientController();
+        $createClient-> ctrCreateClient();
       ?>
 
 
@@ -241,6 +241,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-user"></i></span>
               <input type="text" class="form-control input-group-lg" name="editName" id="editName" placeholder="enter Client" required >
+              <input type="hidden" id="idClient" name="idClient">
             </div>
           </div>
 
@@ -297,6 +298,11 @@
 
 
        </form>
+
+                <?php
+        $editClient=new ClientController();
+        $editClient-> ctrEditClient();
+      ?>
      
 
 
@@ -306,5 +312,8 @@
   </div>
 
 
-
+          <?php
+        $deleteClient=new ClientController();
+        $editClient-> ctrDeleteClient();
+      ?>
  

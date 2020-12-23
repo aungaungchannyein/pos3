@@ -27,3 +27,24 @@ $(document).on("click", ".btnEditClient", function(){
 		}
 	})
 })
+
+
+
+$(document).on("click", ".btnDeleteClient", function(){
+	 var id=$(this).attr("ClientId");
+
+	 	swal({
+						title:'Are you sure you want to delete client',
+						text:'Click Yes to Delete or Click cancel',
+						type:'warning',
+						showCancelButton:true,
+						confirmButtonColor:'#3085d6',
+						cancelButtonColor:'#d33',
+						cancelButtonText:'Cancel',
+						confirmButtonText: 'Yes,delete category'
+					}).then((result)=>{
+							if(result.value){
+								window.location= "index.php?root=client&id="+id;
+							}
+						})
+})

@@ -72,6 +72,103 @@
 			return $answer;
 
 		}
+		static public function ctrEditClient(){
+			if(isset($_POST["editName"])){
+			if(preg_match('/\P{Myanmar}+$/',$_POST["editName"])) {
+
+				$table="client";
+				$data=array("id"=>$_POST["idClient"],
+					"name"=>$_POST["editName"],
+					"document_id"=>$_POST["editDocumentId"],
+					"email"=>$_POST["editEmail"],
+					"phone"=>$_POST["editPhone"],
+					"address"=>$_POST["editAddress"],
+					"birth_date"=>$_POST["editBirthDate"]);
+	
+
+
+				$answer=ModelClient::mdlEditClient($table,$data);
+
+					if($answer == "ok"){
+			 			echo '<script>
+					
+					swal({
+						type: "success",
+						title: "Client was saved",
+						showConfirmButton: true,
+						confirmButtonText: "Close"
+			
+						}).then(function(result){
+
+							if(result.value){
+
+								window.location = "client";
+							}
+
+						});
+					
+				</script>';
+			 	}
+
+
+
+
+
+
+			}else{
+				echo '<script>
+					
+					swal({
+						type: "error",
+						title: "Name cant be empty or special character",
+						showConfirmButton: true,
+						confirmButtonText: "Close"
+			
+						}).then(function(result){
+
+							if(result.value){
+
+								window.location = "client";
+							}
+
+						});
+					
+					</script>';
+			}
+
+			}
+		}
+
+		static public function ctrDeleteClient(){
+			if(isset($_GET["id"])){
+			$table="client";
+			$data=$_GET["id"];
+
+
+			$resquest=ModelClient::mdlDeleteClient($table,$data);
+
+				if($resquest == "ok"){
+			 			echo '<script>
+					
+					swal({
+						type: "success",
+						title: "Client was delete",
+						showConfirmButton: true,
+						confirmButtonText: "Close"
+			
+						}).then(function(result){
+
+							if(result.value){
+
+								window.location = "client";
+							}
+
+						});
+					
+				</script>';
+			 	}
+		}
+		}
 	}
 
 
