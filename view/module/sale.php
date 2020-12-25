@@ -23,7 +23,7 @@
       
       <div class="box">
         <div class="box-header with-border">
-          <a href="create-sale">
+          <a href="create-sale.php">
           <button class="btn btn-primary">
             Add Sale
           </button>

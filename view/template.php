@@ -93,7 +93,8 @@ session_start();
            $_GET["root"] == "manage-sale" ||
            $_GET["root"] == "create-sale" || 
            $_GET["root"] == "report" ||
-           $_GET["root"] == "logout"){
+           $_GET["root"] == "logout" ||
+           $_GET["root"] == "sale"){
           include "module/".$_GET["root"].".php";
         }
         else{
