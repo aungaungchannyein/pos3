@@ -129,5 +129,6 @@ session_start();
  <script src="view/js/category.js"></script>
  <script src="view/js/product.js"></script>
  <script src="view/js/client.js"></script>
+ <script src="view/js/sale.js"></script>
 </body>
 </html>

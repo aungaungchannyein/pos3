@@ -30,32 +30,14 @@
                   <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" name="newSeller" id="newSeller" value="<?php echo $_SESSION["name"];?>" readonly>
-                        <input type="hidden" name="idSeller" id="idSeller" value="<?php echo $_SESSION["id"];?>">
+                        <input type="text" class="form-control" name="newSeller" id="newSeller" value="<?php echo $SESSION["name"];?>" readonly>
                     </div>
                   </div>
 
                    <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <?php
-                        $item=null;
-                        $value=null;
-                          $sale=SaleController::ctrShowSale($item,$value);
-                          if(!$sale){
-                            echo'<input type="text" class="form-control" name="newSale" id="newSale" value="10001" readonly>';
-                          }else{
-
-                            foreach($sale as $key => $value){
-
-                             
-                            }
-                             $code=value["code"]+1;
-                             
-                             echo'<input type="text" class="form-control" name="newSale" id="newSale" value="'.$code.'" readonly>'; 
-                          }
-                        ?>
-                       
+                        <input type="text" class="form-control" name="newSale" id="newSale" value="10001" readonly>
                     </div>
                   </div>
                   <div class="form-group">
@@ -63,16 +45,6 @@
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <select class="form-control" name="selectCustomer" id="selectCustomer" required>
                         <option value="">SelectClient</option>
-                        <?php
-                          $item=null;
-                          $value=null;
-                          $client=ClientController::ctrShowClient($item,$value);
-                          foreach($client as $key =>$value){
-                            echo' <option value="'.$value["id"].'">'.$value["name"].'</option>';
-                          }
-
-
-                         ?>
                         </select>
                         <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalAddClient" data-dismiss="modal">Add Client</button></span>
                     </div>
@@ -168,7 +140,7 @@
           <div class="box box-warning">
             <div class="box-header with-border"></div>
             <div class="box-body">
-               <table class="table table-bordered table-striped dt-responsive saleTable">
+               <table class="table table-bordered table-striped dt-responsive salesTable">
                   
                 <thead>
 
