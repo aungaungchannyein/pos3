@@ -23,7 +23,7 @@
         <div class="col-lg-5 col-xs-12">
            <div class="box box-success">
              <div class="box-header with-border"></div>
-             <form role="form" method="post">
+             <form role="form" method="post" class="formSale">
              <div class=box-body>
                
                  <div class="box">
@@ -78,23 +78,8 @@
                     </div>
                   </div>
 
-                  <div class="form-group row newProduct">
-                    <div class="col-xs-6" style="padding-right:0px">
-                      <div class="input-group">
-                        <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></span>
-                        <input type="text" class="form-control" name="newProduct" id="newProduct" placeholder="Descripion of product" required>
-                      </div>
-                    </div>
-                    <div class="col-xs-3">
-                        <input type="number" class="form-control" name="Productqty" id="Productqty" min="1" placeholder="0" required>
-                    </div>
-                      <div class="col-xs-3" style="padding-left:0px">
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                        <input type="number" class="form-control" name="newProductPrice" id="newProductPrice" placeholder="0000000" readonly required>
-                        
-                      </div>
-                    </div>
+                  <div class="form-group row newProduct"> 
+                    
                   </div>
                   <button type="button" class="btn btn-default hidden-lg">Add product</button>
                   <hr>

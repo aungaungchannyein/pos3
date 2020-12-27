@@ -77,9 +77,9 @@ $("#newBuyprice,#editBuyprice").change(function(){
 		var editpercentage=Number(($("#editBuyprice").val()*valpercentage/100))+Number($("#editBuyprice").val());
 		console.log("answer",valpercentage);
 		$('#newSaleprice').val(percentage);
-		$('#newSaleprice').prop("readonly",true);
+		//$('#newSaleprice').prop("readonly",true);
 		$('#editSaleprice').val(editpercentage);
-		$('#editSaleprice').prop("readonly",true);
+		//$('#editSaleprice').prop("readonly",true);
 
 	}
 
@@ -94,21 +94,21 @@ $('.newPercentage').change(function(){
 		var editpercentage=Number(($("#editBuyprice").val()*valpercentage/100))+Number($("#editBuyprice").val());
 		console.log("answer",valpercentage);
 		$('#newSaleprice').val(percentage);
-		$('#newSaleprice').prop("readonly",true);
+		// $('#newSaleprice').prop("readonly",true);
 		$('#editSaleprice').val(editpercentage);
-		$('#editSaleprice').prop("readonly",true);
+		// $('#editSaleprice').prop("readonly",true);
 
 	}
 
 })
 $('.percent').on("ifUnchecked",function(){
-	$('#newSaleprice').prop("readonly",false);
-	$('#editSaleprice').prop("readonly",false);
+	//$('#newSaleprice').prop("readonly",false);
+	//$('#editSaleprice').prop("readonly",false);
 })
 
 $('.percent').on("ifChecked",function(){
-	$('#newSaleprice').prop("readonly",true);
-	$('#editSaleprice').prop("readonly",true);
+	//$('#newSaleprice').prop("readonly",true);
+	//$('#editSaleprice').prop("readonly",true);
 })
 
 $(".newPhoto").change(function(){
