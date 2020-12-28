@@ -14,15 +14,39 @@ class AjaxProduct{
 
 	}
 
+	public function ajaxEditProductss(){
+			$item="id";
+			$value=$this->idProduct;
+			$answer=ProductController::ctrShowProduct($item,$value);
+
+			echo json_encode($answer);
+	}
 	public function ajaxEditProduct(){
 
-		$item="id";
-		$value=$this->idProduct;
-		$answer=ProductController::ctrShowProduct($item,$value);
+		if($this->bringProduct == "ok"){
 
-		echo json_encode($answer);
+			$item=null;
+			$value=null;
+			$answer=ProductController::ctrShowProduct($item,$value);
+
+			echo json_encode($answer);
+
+		}
+
+		
 
 	}
+
+	public function ajaxEditProducts(){
+		$item="description";
+			$value=$this->nameProduct;
+			$answer=ProductController::ctrShowProduct($item,$value);
+
+			echo json_encode($answer);
+	}
+
+	
+
 }
 
 if(isset($_POST["idCategory"])){
@@ -34,5 +58,17 @@ if(isset($_POST["idCategory"])){
 if(isset($_POST["idProduct"])){
 	$editProduct= new AjaxProduct();
 	$editProduct-> idProduct=$_POST["idProduct"];
-	$editProduct-> ajaxEditProduct();
+	$editProduct-> ajaxEditProductss();
+}
+
+if(isset($_POST["bringProduct"])){
+	$bringProduct= new AjaxProduct();
+	$bringProduct-> bringProduct=$_POST["bringProduct"];
+	$bringProduct-> ajaxEditProduct();
+}
+
+if(isset($_POST["nameProduct"])){
+	$nameProduct= new AjaxProduct();
+	$nameProduct-> nameProduct=$_POST["nameProduct"];
+	$nameProduct-> ajaxEditProducts();
 }

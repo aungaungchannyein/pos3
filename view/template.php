@@ -62,6 +62,7 @@ session_start();
 <script src="view/plugins/input-mask/jquery.inputmask.js"></script>
 <script src="view/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="view/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="view/plugins/jqueryNumber/jqueryNumber.min.js"></script>
   </head>
 
 <body class="hold-transition skin-blue sider-collapse sidebar-mini login-page">

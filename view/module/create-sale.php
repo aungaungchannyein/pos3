@@ -81,7 +81,7 @@
                   <div class="form-group row newProduct"> 
                     
                   </div>
-                  <button type="button" class="btn btn-default hidden-lg">Add product</button>
+                  <button type="button" class="btn btn-default hidden-lg btnAddProduct">Add product</button>
                   <hr>
                   <div class="row">
                     <div class="col-xs-8 pull-right">
@@ -96,14 +96,16 @@
                           <tr>
                             <td style="width:50%">
                               <div class="input-group">
-                                <input type="number" class="form-control" name="newTaxSale" id="newTaxSale" placeholder="0" readonly required>
+                                <input type="number" class="form-control input-lg" name="newTaxSale" id="newTaxSale"  placeholder="0"  required>
+                                <input type="hidden" name="newTaxPrice" id="newTaxPrice">
+                                <input type="hidden" name="newNetPrice" id="newNetPrice">
                                 <span class="input-group-addon"><i class="fa fa-percent"></i></span>
                               </div>
                             </td>
                               <td style="width:50%">
                               <div class="input-group">
                                 <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                                <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="0" readonly required>
+                                <input type="text" class="form-control input-lg" name="newSaleTotal" id="newSaleTotal" totalSale="" placeholder="000000" readonly required>
                                 
                               </div>
                             </td>
