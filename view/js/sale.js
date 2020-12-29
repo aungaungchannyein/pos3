@@ -82,7 +82,7 @@ $(".saleTable tbody").on("click","button.addProduct", function(){
                       '</div>'+
                     '</div>'+
                     '<div class="col-xs-3">'+
-                        '<input type="number" class="form-control Productqty" name="Productqty" min="1" value="1" stock="'+stock+'" required>'+
+                        '<input type="number" class="form-control Productqty" name="Productqty" min="1" value="1" stock="'+stock+'" newStock="'+Number(stock-1)+'" required>'+
                     '</div>'+
                       '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
                       '<div class="input-group">'+
@@ -95,6 +95,8 @@ $(".saleTable tbody").on("click","button.addProduct", function(){
                 addingTotalPrices()
 
                 addTax()
+
+                listProducts()
 
                 $(".newProductPrice").number(true, 2);
 
@@ -145,6 +147,7 @@ $(".formSale").on("click","button.removeProduct", function(){
      }else{
          addingTotalPrices()
          addTax()
+         listProducts()
      }
     
 })
@@ -176,7 +179,7 @@ $(".btnAddProduct").click(function(){
                       '</div>'+
                     '</div>'+
                     '<div class="col-xs-3 enterQuantity">'+
-                        '<input type="number" class="form-control Productqty" name="Productqty" id="Productqty" min="1" value="1" stock required>'+
+                        '<input type="number" class="form-control Productqty" name="Productqty" id="Productqty" min="1" value="1" stock newStock required>'+
                     '</div>'+
                       '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
                       '<div class="input-group">'+
@@ -206,6 +209,7 @@ $(".btnAddProduct").click(function(){
              addingTotalPrices()
 
              addTax()
+             
 
              $(".newProductPrice").number(true, 2);
 
@@ -219,6 +223,7 @@ $(".formSale").on("change","select.newDescriptionProduct", function(){
 
     var nameProduct=$(this).val();
     var newProductPrice=$(this).parent().parent().parent().children(".enterPrice").children().children(".newProductPrice");
+    var newProductDescription = $(this).parent().parent().parent().children().children().children(".newDescriptionProduct");
    
 
     var newProductQty=$(this).parent().parent().parent().children(".enterQuantity").children(".Productqty");
@@ -236,12 +241,22 @@ $(".formSale").on("change","select.newDescriptionProduct", function(){
         processData:false,
         dataType:"json",
         success:function(response){
+            
 
             $(newProductQty).attr("stock",response["stock"]);
+            $(newProductDescription).attr("idProduct",response["id"]);
+            $(newProductQty).attr("newStock",Number(response["stock"])-1);
+
             $(newProductPrice).val(response["selling_price"]);
             $(newProductPrice).attr("realPrice",response["selling_price"]);
 
+             addingTotalPrices()
 
+             addTax()
+
+             listProducts()
+
+             $(".newProductPrice").number(true, 2);
             
 
 
@@ -254,6 +269,8 @@ $(".formSale").on("change","input.Productqty", function(){
     var price = $(this).parent().parent().children(".enterPrice").children().children(".newProductPrice");
     var finalPrice = $(this).val()* price.attr("realPrice"); 
      price.val(finalPrice);
+     var newStock=Number($(this).attr("stock"))-$(this).val();
+     $(this).attr("newStock",newStock);
 
     //console.log("success",$(this).attr("realPrice"));  
     if(Number($(this).val())> Number($(this).attr("stock"))){
@@ -271,6 +288,7 @@ $(".formSale").on("change","input.Productqty", function(){
 
   addingTotalPrices()
   addTax()
+  listProducts()
 
     
 })
@@ -278,7 +296,7 @@ $(".formSale").on("change","input.Productqty", function(){
 function addingTotalPrices(){
     var itemPrice=$(".newProductPrice");
     var arrayAdditionPrice = [];
-    console.log(arrayAdditionPrice);
+    //console.log(arrayAdditionPrice);
     for(var i=0; i<itemPrice.length;i++){
 
 
@@ -309,7 +327,7 @@ function addingTotalPrices(){
 function addTax(){
 
     var tax = $("#newTaxSale").val();
-    console.log("success",tax);
+    //console.log("success",tax);
 
     var totalPrice = $("#newSaleTotal").attr("totalSale");
 
@@ -335,3 +353,123 @@ $("#newTaxSale").change(function(){
 });
 
 $("#newSaleTotal").number(true, 2);
+
+$("#newPaymentMethod").change(function(){
+    var method = $(this).val();
+    if(method =="cash"){
+        $(this).parent().parent().removeClass("col-xs-6");
+        $(this).parent().parent().addClass("col-xs-4");
+        $(this).parent().parent().parent().children(".paymentMethodBoxes").html(
+          '<div class="col-xs-4">'+ 
+
+                '<div class="input-group">'+ 
+
+                    '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+ 
+
+                    '<input type="text" class="form-control newCashValue" id="newCashValue" placeholder="000000" required>'+
+
+                '</div>'+
+
+             '</div>'+
+
+             '<div class="col-xs-4 getCashChange" id="getCashChange" style="padding-left:0px">'+
+
+                '<div class="input-group">'+
+
+                    '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+
+                    '<input type="text" class="form-control newCashChange" id="newCashChange" placeholder="000000" readonly required>'+
+
+                '</div>'+
+
+             '</div>'
+            )
+
+            $('#newCashValue').number( true, 2);
+            $('#newCashChange').number( true, 2);
+            listMethods()
+    }else{
+        $(this).parent().parent().removeClass('col-xs-4');
+
+        $(this).parent().parent().addClass('col-xs-6');
+
+         $(this).parent().parent().parent().children('.paymentMethodBoxes').html(
+
+            '<div class="col-xs-6" style="padding-left:0px">'+
+                        
+                '<div class="input-group">'+
+                     
+                  '<input type="number" min="0" class="form-control newTransactionCode" id="newTransactionCode" placeholder="Transaction code"  required>'+
+                       
+                  '<span class="input-group-addon"><i class="fa fa-lock"></i></span>'+
+                  
+                '</div>'+
+
+              '</div>')
+    }
+})
+
+$(".formSale").on("change","input#newCashValue", function(){
+
+    var cash = $(this).val();
+    console.log("success",cash);
+
+    var change = Number(cash) - $('#newSaleTotal').val();
+    console.log("success",change);
+
+    var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('.newCashChange');
+
+    newCashChange.val(change);
+
+})
+
+$(".formSale").on("change","input#newTransactionCode", function(){
+     listMethods()
+  
+
+})
+
+
+function listProducts(){
+
+    var productsList = [];
+
+    var description = $(".newDescriptionProduct");
+
+    var quantity = $(".Productqty");
+
+    var price = $(".newProductPrice");
+
+    for(var i = 0; i < description.length; i++){
+
+        productsList.push({ "id" : $(description[i]).attr("idProduct"), 
+                              "description" : $(description[i]).val(),
+                              "quantity" : $(quantity[i]).val(),
+                              "stock" : $(quantity[i]).attr("newStock"),
+                              "price" : $(price[i]).attr("realPrice"),
+                              "totalPrice" : $(price[i]).val()})
+    }
+
+    $("#productsList").val(JSON.stringify(productsList));
+    //console.log("productList",productsList);
+
+    //$("#productsList").val(JSON.stringify(productsList)); 
+
+}
+
+
+function listMethods(){
+
+    var listMethods = "";
+
+    if($("#newPaymentMethod").val() == "cash"){
+
+        $("#listPaymentMethod").val("cash");
+
+    }else{
+
+        $("#listPaymentMethod").val($("#newPaymentMethod").val()+"-"+$("#newTransactionCode").val());
+
+    }
+
+}

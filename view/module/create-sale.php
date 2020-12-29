@@ -81,6 +81,8 @@
                   <div class="form-group row newProduct"> 
                     
                   </div>
+                   <input type="hidden" name="productsList" id="productsList">
+
                   <button type="button" class="btn btn-default hidden-lg btnAddProduct">Add product</button>
                   <hr>
                   <div class="row">
@@ -105,7 +107,7 @@
                               <td style="width:50%">
                               <div class="input-group">
                                 <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                                <input type="text" class="form-control input-lg" name="newSaleTotal" id="newSaleTotal" totalSale="" placeholder="000000" readonly required>
+                                <input type="text" class="form-control input-lg newSaleTotal" name="newSaleTotal" id="newSaleTotal" totalSale="" placeholder="000000" readonly required>
                                 
                               </div>
                             </td>
@@ -131,12 +133,15 @@
                         </div>
                     </div>
 
-                    <div class="col-xs-6" style="padding-left: 0px">
+                    <div class="paymentMethodBoxes"></div>
+                    <input type="hidden" name="listPaymentMethod" id="listPaymentMethod">
+
+                    <!-- <div class="col-xs-6" style="padding-left: 0px">
                        <div class="input-group">
                          <input type="number" class="form-control" name="newCodeTransition" id="newCodeTransition" placeholder="0" readonly required>
                           <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         </div>
-                    </div>
+                    </div> -->
                     <br>
                   </div>
                  
