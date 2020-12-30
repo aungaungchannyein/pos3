@@ -23,8 +23,8 @@
         <div class="col-lg-5 col-xs-12">
            <div class="box box-success">
              <div class="box-header with-border"></div>
-             <form role="form" method="post" class="formSale">
-             <div class=box-body>
+<form role="form" method="post" class="formSale">
+              <div class=box-body>
                
                  <div class="box">
                   <div class="form-group">
@@ -33,7 +33,7 @@
                         <input type="text" class="form-control" name="newSeller" id="newSeller" value="<?php echo $_SESSION["name"];?>" readonly>
                         <input type="hidden" name="idSeller" id="idSeller" value="<?php echo $_SESSION["id"];?>">
                     </div>
-                  </div>
+                    </div>
 
                    <div class="form-group">
                     <div class="input-group">
@@ -108,6 +108,7 @@
                               <div class="input-group">
                                 <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                                 <input type="text" class="form-control input-lg newSaleTotal" name="newSaleTotal" id="newSaleTotal" totalSale="" placeholder="000000" readonly required>
+                                <input type="hidden" name="saleTotal" id="totalSale">
                                 
                               </div>
                             </td>
@@ -145,13 +146,20 @@
                     <br>
                   </div>
                  
-                 </div>
+              </div>
               
              </div>
              <div class="box-footer">
                <button type="submit" class="btn btn-primary pull-right">Save sale</button>
              </div>
-           </form>
+</form>
+
+             <?php
+
+            $saveSale = new SaleController();
+            $saveSale -> ctrCreateSale();
+            
+          ?>
 
            </div>
         </div>

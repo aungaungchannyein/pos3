@@ -141,6 +141,7 @@ $(".formSale").on("click","button.removeProduct", function(){
 
      if($(".newProduct").children().length == 0){
         $("#newSaleTotal").val(0);
+        $("#saleTotal").val(0);
         $("#newTaxSale").val(0);
         $("#newSaleTotal").attr("totalSale",0);
 
@@ -209,6 +210,7 @@ $(".btnAddProduct").click(function(){
              addingTotalPrices()
 
              addTax()
+             listProducts()
              
 
              $(".newProductPrice").number(true, 2);
@@ -314,6 +316,7 @@ function addingTotalPrices(){
 
     var addingTotalPrice = arrayAdditionPrice.reduce(additionArrayPrices);
    $("#newSaleTotal").val(addingTotalPrice);
+   $("saleTotal").val(addingTotalPrice);
    $("#newSaleTotal").attr("totalSale",addingTotalPrice);
 
     
@@ -336,6 +339,8 @@ function addTax(){
     var totalwithTax = Number(taxPrice) + Number(totalPrice);
     
     $("#newSaleTotal").val(totalwithTax);
+
+    $("#saleTotal").val(totalwithTax);
 
     $("#totalSale").val(totalwithTax);
 
