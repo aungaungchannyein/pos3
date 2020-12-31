@@ -50,7 +50,7 @@
 
                              
                             }
-                             $code=value["code"]+1;
+                             $code=$value["code"]+1;
                              
                              echo'<input type="text" class="form-control" name="newSale" id="newSale" value="'.$code.'" readonly>'; 
                           }
@@ -108,7 +108,7 @@
                               <div class="input-group">
                                 <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                                 <input type="text" class="form-control input-lg newSaleTotal" name="newSaleTotal" id="newSaleTotal" totalSale="" placeholder="000000" readonly required>
-                                <input type="hidden" name="saleTotal" id="totalSale">
+                                <input type="hidden" name="saleTotal" id="saleTotal">
                                 
                               </div>
                             </td>

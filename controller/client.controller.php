@@ -12,7 +12,7 @@
 			   preg_match('/^[()\-0-9 ]+$/', $_POST["newPhone"]) && 
 			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["newAddress"])){*/
 					$table="client";
-					$data = array("name"=>$_POST["name"],
+					$data = array("name"=>$_POST["newName"],
 					           "document_id"=>$_POST["newDocumentId"],
 					           "email"=>$_POST["newEmail"],
 					           "phone"=>$_POST["newPhone"],

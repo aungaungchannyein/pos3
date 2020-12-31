@@ -50,39 +50,19 @@
 
               $item=null;
               $value=null;
-              $sale=SaleController::ctrShowSale($item,$value);
+              $category=CategoryController::ctrShowCategory($item,$value);
               
 
-    
-              foreach ($sale as $key => $value) {
+              foreach ($category as $key => $value) {
                 
                 echo' <tr> <td>'.($key+1).'</td>
-              <td>'.$value["code"].'</td>';
-
-              $itemClient="id";
-              $valueClient=$value["id_client"];
-              $requestClient=ClientController::ctrShowClient($itemClient,$valueClient);
-
-              echo'<td>'.$requestClient["name"].'</td>';
-
-
-              $itemSeller="id";
-              $valueSeller=$value["id_seller"];
-              $requestSeller=UserController::ctrShowUser($itemSeller,$valueSeller);
-
-
-              echo'<td>'.$requestSeller["name"].'</td>
-              <td>'.$value["payment_method"].'</td>
-              <td>'.number_format($value["net_price"]).'</td>
-              <td>'.number_format($value["total"]).'</td>
-              <td>'.$value["date"].'</td>
+              <td class="text-bold">'.$value["category"].'</td>
               <td>
                 <div class="btn-group">
-                  <button class="btn btn-info btnEditClient" idClient="'.$value["id"].'" data-toggle="modal" data-target="#modalEditClient"><i class="fa fa-print"></i></button>
-                  <button class="btn btn-danger btnDeleteClient" ClientId="'.$value["id"].'"  ><i class="fa fa-times"></i></button>
+                  <button class="btn btn-warning btnEditCategory" idCategory="'.$value["id"].'" data-toggle="modal" data-target="#modalEditCategory"><i class="fa fa-pencil"></i></button>
+                  <button class="btn btn-danger btnDeleteCategory" CategoryId="'.$value["id"].'"  ><i class="fa fa-times"></i></button>
                 </div>
-              </td>
-            </tr>';
+              </td></tr>';
               }
 
 
