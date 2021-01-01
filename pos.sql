@@ -55,6 +55,7 @@ CREATE TABLE `client` (
   `address` text NOT NULL,
   `birth_date` date NOT NULL,
   `total_purchase` int(11) NOT NULL,
+  `last_purchase` datetime NOT NULL
   `register_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

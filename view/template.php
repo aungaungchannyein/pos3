@@ -92,7 +92,8 @@ session_start();
            $_GET["root"] == "product" ||
            $_GET["root"] == "client" ||
            $_GET["root"] == "manage-sale" ||
-           $_GET["root"] == "create-sale" || 
+           $_GET["root"] == "create-sale" ||
+           $_GET["root"] == "edit-sale" ||
            $_GET["root"] == "report" ||
            $_GET["root"] == "logout" ||
            $_GET["root"] == "sale"){

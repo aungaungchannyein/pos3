@@ -2,7 +2,7 @@
 	class ModelSale{
 		static public function mdlShowSale($table,$item,$value){
 			if($item!=null){
-				$stmt=Connection::Connector()->prepare("SELECT * FROM $table WHERE $item=:$item ORDER BY date DESC");
+				$stmt=Connection::Connector()->prepare("SELECT * FROM $table WHERE $item=:$item ORDER BY id ASC");
 				$stmt-> bindParam(":".$item,$value,PDO::PARAM_STR);
 
 				$stmt->execute();
@@ -13,7 +13,7 @@
 
 
 			}else{
-				$stmt=Connection::Connector()->prepare("SELECT * from $table");
+				$stmt=Connection::Connector()->prepare("SELECT * from $table ORDER BY id ASC");
 			
 				$stmt->execute();
 

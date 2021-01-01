@@ -78,8 +78,11 @@
               <td>'.$value["date"].'</td>
               <td>
                 <div class="btn-group">
-                  <button class="btn btn-info btnEditClient" idClient="'.$value["id"].'" data-toggle="modal" data-target="#modalEditClient"><i class="fa fa-print"></i></button>
-                  <button class="btn btn-danger btnDeleteClient" ClientId="'.$value["id"].'"  ><i class="fa fa-times"></i></button>
+                 <button class="btn btn-info"><i class="fa fa-print"></i></button>
+
+                  <button class="btn btn-warning btnEditSale" id="btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+
+                  <button class="btn btn-danger btnDeleteSale" idSale="'.$value["id"].'"><i class="fa fa-times"></i></button>
                 </div>
               </td>
             </tr>';

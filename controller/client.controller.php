@@ -29,7 +29,7 @@
 						  type: "success",
 						  title: "The customer has been saved",
 						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
+						  confirmButtonText: "Ok"
 						  }).then(function(result){
 									if (result.value) {
 

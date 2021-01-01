@@ -478,3 +478,11 @@ function listMethods(){
     }
 
 }
+
+
+//EditSale
+
+$(".btnEditSale").click(function(){
+  var idSale=$(this).attr("idSale");
+  window.location="index.php?root=edit-sale&idSale="+idSale;
+})

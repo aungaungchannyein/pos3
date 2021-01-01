@@ -63,7 +63,7 @@
                 <td>'.$value["address"].'</td>
                 <td>'.$value["birth_date"].'</td>
                 <td>'.$value["total_purchase"].'</td>
-                <td>Last Purchase</td>
+                <td>'.$value["last_purchase"].'</td>
                 <td>'.$value["register_date"].'</td>
                 <td>
                 <div class="btn-group">
