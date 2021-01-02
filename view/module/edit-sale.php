@@ -31,7 +31,7 @@
                         $item="id";
                         $value=$_GET["idSale"];
                          $sale=SaleController::ctrShowSale($item,$value);
-                         var_dump($sale);
+                         //var_dump($sale);
 
                          $itemSeller="id";
                           $valueSeller=$sale["id_seller"];
@@ -57,7 +57,7 @@
                    <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input type="text" class="form-control" name="editSale" id="editSale" value="<?php echo $sale["code"];?>" readonly>';
+                        <input type="text" class="form-control" name="editSale" id="editSale" value="<?php echo $sale["code"]; ?>" readonly>
                          
                        
                     </div>
@@ -87,7 +87,7 @@
                     <?php
 
                     $productList=json_decode($sale["product"],true);
-                    var_dump($productList);
+                    //var_dump($productList);
 
                     foreach($productList as $key =>$value){
                       $itemproduct="id";
