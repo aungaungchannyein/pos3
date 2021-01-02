@@ -47,6 +47,7 @@
                           }else{
 
                             foreach($sale as $key => $value){
+                              //var_dump($value["code"]);
 
                              
                             }

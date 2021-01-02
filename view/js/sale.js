@@ -77,7 +77,7 @@ $(".saleTable tbody").on("click","button.addProduct", function(){
                 '<div class="row" style="padding:5px 15px">'+
                 '<div class="col-xs-6" style="padding-right:0px">'+
                       '<div class="input-group">'+
-                        '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" idProduct="'+idProduct+'"><i class="fa fa-times"></i></button></span>'+
+                        '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" id="removeProduct" idProduct="'+idProduct+'"><i class="fa fa-times"></i></button></span>'+
                         '<input type="text" class="form-control newDescriptionProduct" idProduct="'+idProduct+'" name="newDescriptionProduct" value="'+description+'" required>'+
                       '</div>'+
                     '</div>'+
@@ -173,7 +173,7 @@ $(".btnAddProduct").click(function(){
                 '<div class="row" style="padding:5px 15px">'+
                 '<div class="col-xs-6" style="padding-right:0px">'+
                       '<div class="input-group">'+
-                        '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" idProduct><i class="fa fa-times"></i></button></span>'+
+                        '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" id="removeProduct" idProduct><i class="fa fa-times"></i></button></span>'+
                         '<select class="form-control newDescriptionProduct" id="product'+numProduct+'" idProduct name="newDescriptionProduct" required> '+
                       '<option>Select Product</option>'+
                       '</select>'+
@@ -485,4 +485,45 @@ function listMethods(){
 $(".btnEditSale").click(function(){
   var idSale=$(this).attr("idSale");
   window.location="index.php?root=edit-sale&idSale="+idSale;
+})
+
+
+function removeAddProductSale(){
+
+  //We capture all the products' id that were selected in the sale
+  var idProducts = $(".removeProduct");
+
+  //We capture all the buttons to add that appear in the table
+  var tableButtons = $(".saleTable tbody button.addProduct");
+
+
+  //We navigate the cycle to get the different idProducts that were added to the sale
+  for(var i = 0; i < idProducts.length; i++){
+
+    //We capture the IDs of the products added to the sale
+    var button = $(idProducts[i]).attr("idProduct");
+    
+    //We go over the table that appears to deactivate the "add" buttons
+    for(var j = 0; j < tableButtons.length; j ++){
+
+      if($(tableButtons[j]).attr("idProduct") == button){
+
+        $(tableButtons[j]).removeClass("btn-primary addProduct");
+        $(tableButtons[j]).addClass("btn-default");
+
+      }
+    }
+
+  }
+  
+}
+
+/*=============================================
+EVERY TIME THAT THE TABLE IS LOADED WHEN WE NAVIGATE THROUGH IT EXECUTES A FUNCTION
+=============================================*/
+
+$('.saleTable').on( 'draw.dt', function(){
+
+  removeAddProductSale();
+
 })

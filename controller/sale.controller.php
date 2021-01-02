@@ -111,6 +111,20 @@ class SaleController{
 
 			$getSale = ModelSale::mdlShowSale($table, $item, $value);
 
+			
+
+			if($_POST["productsList"]==""){
+				$productsList=$getSale["product"];
+				$productChange = false;
+			}else{
+				$productsList=$_POST["productsList"];
+				$productChange = true;
+			}
+
+			if($productChange){
+
+
+
 			$listproduct=json_decode($getSale["product"],true);
 
 			$totalPurchasedProducts = array();
@@ -126,14 +140,17 @@ class SaleController{
 			 	$valueProductId=$value["id"];
 			 	$getProduct = ModelProduct::mdlShowProduct($tableProduct, $item, $valueProductId);
 
+
 			 	$item1a = "sold_quantity";
 				$value1a = $getProduct["sold_quantity"] - $value["quantity"];
 
-				$newSales =ModelProduct:: mdlActivateProduct($tableProducts, $item1a, $value1a, $value);
+				$newSales =ModelProduct:: mdlActivateProduct($tableProduct, $item1a, $value1a, $value);
+				
 
 			 	$item1b="stock";
 			 	$value1b=$value["quantity"]+$getProduct["stock"];
 			 	$newStock=ModelProduct:: mdlActivateProduct($tableProduct,$item1b,$value1b,$valueProductId);
+			 	
 
 
 			
@@ -152,7 +169,7 @@ class SaleController{
 
 			// update sale tabel
 
-			$listproduct_2=json_decode($_POST["productsList"],true);
+			$listproduct_2=json_decode($productsList,true);
 
 			$totalPurchasedProducts_2 = array();
 
@@ -170,10 +187,12 @@ class SaleController{
 				$item1a_2="sold_quantity";
 				$value1a_2=$value["quantity"]+$getProduct_2["sold_quantity"];
 				$newSale_2=ModelProduct:: mdlActivateProduct($tableProduct_2,$item1a_2,$value1a_2,$valueProductId_2);
+			
 
 				$item1b_2="stock";
 				$value1b_2=$value["stock"];
 				$newStock_2=ModelProduct:: mdlActivateProduct($tableProduct_2,$item1b_2,$value1b_2,$valueProductId_2);
+			
 
 			}
 
@@ -196,12 +215,13 @@ class SaleController{
 			$value1b_2 = $date_2.' '.$hour_2;
 
 			$dateCustomer_2 = ModelClient::mdlActivateClient($tableCustomer_2, $item1b_2, $value1b_2, $valueCustomer_2);
+		}
 
 			$table="sale";
 			$data = array("id_seller"=>$_POST["idSeller"],
 						   "id_client"=>$_POST["selectCustomer"],
 						   "code"=>$_POST["editSale"],
-						   "product"=>$_POST["productsList"],
+						   "product"=>$productsList,
 						   "tax"=>$_POST["newTaxPrice"],
 						   "net_price"=>$_POST["newNetPrice"],
 						   "total"=>$_POST["saleTotal"],

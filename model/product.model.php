@@ -97,7 +97,7 @@
 			$stmt=Connection::Connector()->prepare("UPDATE $table SET $item1=:$item1 WHERE id=:id");
 
 			$stmt-> bindParam(":".$item1,$value1,PDO::PARAM_STR);
-			$stmt-> bindParam(":id",$value2,PDO::PARAM_STR);
+			$stmt-> bindParam(":id",$value2,PDO::PARAM_INT);
 		
 
 			if($stmt->execute())
