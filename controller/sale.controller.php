@@ -49,7 +49,7 @@ class SaleController{
 
 			$item1b = "last_purchase";
 
-			// date_default_timezone_set('America/Bogota');
+			date_default_timezone_set('Asia/Yangon');
 
 			$date = date('Y-m-d');
 			$hour = date('H:i:s');
@@ -208,7 +208,7 @@ class SaleController{
 
 			$item1b_2 = "last_purchase";
 
-			// date_default_timezone_set('America/Bogota');
+			date_default_timezone_set('Asia/Yangon');
 
 			$date_2 = date('Y-m-d');
 			$hour_2 = date('H:i:s');
@@ -255,6 +255,56 @@ class SaleController{
 
 
 
+
+		}
+
+	}
+
+	static public function ctrDeleteSale(){
+
+		if(isset($_GET["idSale"])){
+			$table="sale";
+			$item="id";
+			$value=$_GET["idSale"];
+
+			$deleteSale=ModelSale::mdlShowSale($table,$item,$value);
+			//var_dump($deleteSale["id"]);
+
+			$itemSale=null;
+			$valueSale=null;
+			$getSale=ModelSale::mdlShowSale($table,$itemSale,$valueSale);
+			$arrayDate=array();
+
+			foreach($getSale as $key=>$value){
+				if($value["id_client"] == $deleteSale["id_client"]){
+					array_push($arrayDate,$value["date"]);
+				}
+			}
+
+			var_dump($arrayDate);
+
+			if(count($arrayDate)>1){
+				var_dump("hello");
+				if($deleteSale["date"]>$arrayDate[count($arrayDate)-2]){
+				var_dump("hello2");
+				$item2="last_purchase";
+				$tableCustomer2="client";
+				$value2=$arrayDate[count($arrayDate)-2];
+				//var_dump($arrayDate[count($arrayDate)-2]);
+				$valueIdClient=$deleteSale["id_client"];
+$updateClient1= ModelClient::mdlActivateClient($tableCustomer2, $item2, $value2, $valueIdClient);
+
+				}
+
+			}else{
+				//var_dump("Hello2");
+				$item1="last_purchase";
+				$value1="0000-00-00 00:00:00";
+				$tableCustomer="client";
+				$valueCustomer=$deleteSale["id_client"];
+				//var_dump($valueCustomer);
+				$updateClient= ModelClient::mdlActivateClient($tableCustomer, $item1, $value1, $valueCustomer);
+			}
 
 		}
 

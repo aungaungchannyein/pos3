@@ -144,7 +144,7 @@
                               <td style="width:50%">
                               <div class="input-group">
                                 <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                                <input type="text" class="form-control input-lg newSaleTotal" name="newSaleTotal" id="newSaleTotal" totalSale="" value="<?php echo $sale["total"];?>" readonly required>
+                                <input type="text" class="form-control input-lg newSaleTotal" name="newSaleTotal" id="newSaleTotal" totalSale="<?php echo $sale["net_price"];?>" value="<?php echo $sale["total"];?>" readonly required>
                                 <input type="hidden" name="saleTotal" id="saleTotal" value="<?php echo $sale["total"];?>">
                                 
                               </div>

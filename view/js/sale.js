@@ -527,3 +527,27 @@ $('.saleTable').on( 'draw.dt', function(){
   removeAddProductSale();
 
 })
+
+
+
+$(document).on("click", ".btnDeleteSales", function(){
+
+  var idSale=$(this).attr("idSale");
+  
+ 
+  swal({
+            title:'Are you sure you want to delete client',
+            text:'Click Yes to Delete or Click cancel',
+            type:'warning',
+            showCancelButton:true,
+            confirmButtonColor:'#3085d6',
+            cancelButtonColor:'#d33',
+            cancelButtonText:'Cancel',
+            confirmButtonText: 'Yes,delete category'
+          }).then((result)=>{
+
+              if(result.value){
+                window.location= "index.php?root=manage-sale&idSale="+idSale;
+              }
+})
+         })
