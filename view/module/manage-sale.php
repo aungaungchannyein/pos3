@@ -94,11 +94,13 @@
             </tbody>
             
           </table>
-
           <?php
-            $deleteSale=new SaleController();
-            $deleteSale-> ctrDeleteSale();
+          $deleteSale=new SaleController();
+          $deleteSale->ctrDeleteSale();
+
           ?>
+
+         
 
         </div>
       

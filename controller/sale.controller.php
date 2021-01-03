@@ -129,9 +129,10 @@ class SaleController{
 
 			$totalPurchasedProducts = array();
 
-			//var_dump("tttttttttt",$listproduct);
+			var_dump("tttttttttt",$listproduct);
 
 			foreach ($listproduct as $key => $value){
+				//var_dump("tttttttttt",$value["quantity"]);
 				
 				array_push($totalPurchasedProducts,$value["quantity"]);
 
@@ -142,9 +143,13 @@ class SaleController{
 
 
 			 	$item1a = "sold_quantity";
+			 	
+			 	//var_dump("quantity1",$getProduct["sold_quantity"]);
 				$value1a = $getProduct["sold_quantity"] - $value["quantity"];
+				 //$value1a_1=$value["id"];
+				//var_dump("quantity",$value["quantity"]);
 
-				$newSales =ModelProduct:: mdlActivateProduct($tableProduct, $item1a, $value1a, $value);
+				$newSales =ModelProduct:: mdlActivateProduct($tableProduct, $item1a, $value1a, $valueProductId);
 				
 
 			 	$item1b="stock";
@@ -186,6 +191,7 @@ class SaleController{
 
 				$item1a_2="sold_quantity";
 				$value1a_2=$value["quantity"]+$getProduct_2["sold_quantity"];
+				//$value1a_1_2=$value["id"];
 				$newSale_2=ModelProduct:: mdlActivateProduct($tableProduct_2,$item1a_2,$value1a_2,$valueProductId_2);
 			
 
@@ -194,7 +200,7 @@ class SaleController{
 				$newStock_2=ModelProduct:: mdlActivateProduct($tableProduct_2,$item1b_2,$value1b_2,$valueProductId_2);
 			
 
-			}
+		 	}
 
 			$tableCustomer_2 = "client";
 
@@ -256,9 +262,9 @@ class SaleController{
 
 
 
-		}
+	 }
 
-	}
+	 }
 
 	static public function ctrDeleteSale(){
 
@@ -292,7 +298,7 @@ class SaleController{
 				$value2=$arrayDate[count($arrayDate)-2];
 				//var_dump($arrayDate[count($arrayDate)-2]);
 				$valueIdClient=$deleteSale["id_client"];
-$updateClient1= ModelClient::mdlActivateClient($tableCustomer2, $item2, $value2, $valueIdClient);
+				$updateClient1= ModelClient::mdlActivateClient($tableCustomer2, $item2, $value2, $valueIdClient);
 
 				}
 
@@ -305,6 +311,77 @@ $updateClient1= ModelClient::mdlActivateClient($tableCustomer2, $item2, $value2,
 				//var_dump($valueCustomer);
 				$updateClient= ModelClient::mdlActivateClient($tableCustomer, $item1, $value1, $valueCustomer);
 			}
+
+
+			$listproduct=json_decode($deleteSale["product"],true);
+
+			$totalPurchasedProducts = array();
+
+			//var_dump("tttttttttt",$listproduct);
+
+			foreach ($listproduct as $key => $value){
+				
+				array_push($totalPurchasedProducts,$value["quantity"]);
+
+			 	$tableProduct="product";
+				$item="id";
+			 	$valueProductId=$value["id"];
+			 	$getProduct = ModelProduct::mdlShowProduct($tableProduct, $item, $valueProductId);
+
+
+			 	$item1a = "sold_quantity";
+				$value1a = $getProduct["sold_quantity"] - $value["quantity"];
+
+				$newSales =ModelProduct:: mdlActivateProduct($tableProduct, $item1a, $value1a, $valueProductId);
+				
+
+			 	$item1b="stock";
+			 	$value1b=$value["quantity"]+$getProduct["stock"];
+			 	$newStock=ModelProduct:: mdlActivateProduct($tableProduct,$item1b,$value1b,$valueProductId);
+			 	
+
+
+			
+			}
+
+			$tableCustomer = "client";
+
+			$item="id";
+			$valueCustomer = $deleteSale["id_client"];
+			$getCustomer = ModelClient::mdlShowCLient($tableCustomer, $item, $valueCustomer);
+
+			 $item1a = "total_purchase";
+			 $value1a =$getCustomer["total_purchase"]- array_sum($totalPurchasedProducts) ;
+
+			 $customerPurchases = ModelClient::mdlActivateClient($tableCustomer, $item1a, $value1a, $valueCustomer);
+
+
+			 $answer=ModelSale::mdlDeleteSale($table,$_GET["idSale"]);
+
+			 	if($answer == "ok"){
+
+				echo'<script>
+
+				swal({
+					  type: "success",
+					  title: "The sale has been deleted succesfully",
+					  showConfirmButton: true,
+					  confirmButtonText: "Close",
+					  closeOnConfirm: false
+					  }).then((result) => {
+								if (result.value) {
+
+								window.location = "manage-sale";
+
+								}
+							})
+
+				</script>';
+
+			}
+
+			
+
 
 		}
 
