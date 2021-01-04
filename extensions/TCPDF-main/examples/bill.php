@@ -12,6 +12,8 @@ require_once "../../../model/user.model.php";
 require_once "../../../controller/product.controller.php";
 require_once "../../../model/product.model.php";
 
+//require_once('../tcpdf.php');
+
 class printBill{
 
 public $code;
@@ -51,9 +53,16 @@ require_once('tcpdf_include.php');
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
+
+
+//$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, false, 'ISO-639-2', false);
+
 $pdf->startPageGroup();
 
 $pdf->AddPage();
+
+$fontname = TCPDF_FONTS::addTTFfont('../fonts/Pyidaungsu-2.5_Regular.ttf', 'TrueTypeUnicode', '', 32);
+$pdf->SetFont($fontname, '', 14, true);
 
 
 
@@ -69,11 +78,10 @@ $block1 = <<<EOF
                 
                 <div style="font-size:8.5px; text-align:right; line-height:15px;">
                     
-                    <br>
-                    NIT: 71.759.963-9
+                    
 
                     <br>
-                    ADDRESS: Calle 44B 92-11
+                    ADDRESS: Shwebo
 
                 </div>
 
@@ -84,10 +92,10 @@ $block1 = <<<EOF
                 <div style="font-size:8.5px; text-align:right; line-height:15px;">
                     
                     <br>
-                    CELLPHONE: 300 786 52 49
+                    CELLPHONE: 09 205 6316
                     
                     <br>
-                    sales@inventorysystem.com
+                    aungaung.channyein@gmail.com
 
                 </div>
                 
@@ -137,7 +145,10 @@ $block2 = <<<EOF
 
         <tr>
         
-            <td style="border: 1px solid #666; background-color:white; width:540px">Seller: $answerSeller[name]</td>
+            <td style="border: 1px solid #666; background-color:white; width:540px">
+            Seller: $answerSeller[name]
+
+            </td>
 
         </tr>
 
@@ -290,6 +301,7 @@ $pdf->writeHTML($block5, false, false, false, false, '');
 
 // ---------------------------------------------------------
 //SALIDA DEL ARCHIVO 
+//$fontname = TCPDF_FONTS::addTTFfont('Pyidaungsu-2.5_Regular.ttf', '', 32);
 
 $pdf->Output('bill.pdf', 'D');
 

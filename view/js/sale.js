@@ -482,7 +482,8 @@ function listMethods(){
 
 //EditSale
 
-$(".btnEditSale").click(function(){
+
+$(".tables").on("click", ".btnEditSale", function(){
   var idSale=$(this).attr("idSale");
   window.location="index.php?root=edit-sale&idSale="+idSale;
 })
@@ -530,7 +531,7 @@ $('.saleTable').on( 'draw.dt', function(){
 
 
 
-$(document).on("click", ".btnDeleteSales", function(){
+$(".tables").on("click", ".btnDeleteSales", function(){
 
   var idSale=$(this).attr("idSale");
   
