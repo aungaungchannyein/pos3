@@ -551,3 +551,14 @@ $(document).on("click", ".btnDeleteSales", function(){
               }
 })
          })
+
+
+$(".tables").on("click", ".btnPrintSales", function(){
+
+  var code=$(this).attr("saleCode");
+  //console.log("success",code);
+  window.open("extensions/TCPDF-main/examples/bill.php?code="+code,"_blank");
+})
+
+//extensions/TCPDF-main/examples/
+//extensions/tcpdf/pdf/

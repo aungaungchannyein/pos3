@@ -8,7 +8,7 @@
 
 			if($item!=null){
 
-				$stmt=Connection::Connector()->prepare("SELECT * from $table WHERE $item=:$item ");
+				$stmt=Connection::Connector()->prepare("SELECT * from $table WHERE $item=:$item ORDER BY id DESC");
 				//ORDER BY id DESC
 				$stmt-> bindParam(":".$item,$value,PDO::PARAM_STR);
 				$stmt->execute();

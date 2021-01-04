@@ -39,9 +39,10 @@ $('.tableProduct').DataTable( {
 }
     } );
 
-$("#newCategory").change(function(){
+$(".newCategory").change(function(){
 
 	var idCategory=$(this).val();
+	//console.log("answer",idCategory);
 
 	var data=new FormData();
 	data.append("idCategory",idCategory);
@@ -55,6 +56,7 @@ $("#newCategory").change(function(){
 		processData:false,
 		dataType:"json",
 		success:function(answer){
+			//console.log("answer",answer);
 
 			if(!answer){
 				var newCode=idCategory+"01";

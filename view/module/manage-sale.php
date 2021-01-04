@@ -78,7 +78,7 @@
               <td>'.$value["date"].'</td>
               <td>
                 <div class="btn-group">
-                 <button class="btn btn-info"><i class="fa fa-print"></i></button>
+                 <button class="btn btn-info btnPrintSales" saleCode="'.$value["code"].'"><i class="fa fa-print"></i></button>
 
                   <button class="btn btn-warning btnEditSale" id="btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
 

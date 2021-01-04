@@ -129,7 +129,7 @@ class SaleController{
 
 			$totalPurchasedProducts = array();
 
-			var_dump("tttttttttt",$listproduct);
+			//var_dump("tttttttttt",$listproduct);
 
 			foreach ($listproduct as $key => $value){
 				//var_dump("tttttttttt",$value["quantity"]);
@@ -287,12 +287,12 @@ class SaleController{
 				}
 			}
 
-			var_dump($arrayDate);
+			//var_dump($arrayDate);
 
 			if(count($arrayDate)>1){
-				var_dump("hello");
+				//var_dump("hello");
 				if($deleteSale["date"]>$arrayDate[count($arrayDate)-2]){
-				var_dump("hello2");
+				//var_dump("hello2");
 				$item2="last_purchase";
 				$tableCustomer2="client";
 				$value2=$arrayDate[count($arrayDate)-2];

@@ -80,7 +80,7 @@
           <div class="form-group">
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-th"></i></span>
-              <select class="form-control input-group-lg" id="newCategory" name="newCategory" required>
+              <select class="form-control input-group-lg newCategory" id="newCategory" name="newCategory" required>
                 <option value="">Select Category</option>
                 <?php
                   $item=null;
