@@ -92,7 +92,8 @@
                     foreach($productList as $key =>$value){
                       $itemproduct="id";
                       $valueproduct=$value["id"];
-                      $requestProduct=ProductController::ctrShowProduct($itemproduct,$valueproduct);
+                      $order="id";
+                      $requestProduct=ProductController::ctrShowProduct($itemproduct,$valueproduct,$order);
                       $stock=$requestProduct["stock"]+$value["quantity"];
 
                        echo'<div class="row" style="padding:5px 15px">

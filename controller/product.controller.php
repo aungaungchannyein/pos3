@@ -2,12 +2,17 @@
 
 class ProductController{
 
-	static public function ctrShowProduct($item,$value){
+	static public function ctrShowProduct($item,$value,$order){
 		
 		$table="product";
-		$answer=ModelProduct::mdlShowProduct($table,$item,$value);
+		$answer=ModelProduct::mdlShowProduct($table,$item,$value,$order);
 		return $answer;
 
+	}
+	static public function ctrShowProductorder($item, $value, $order){
+		$table="product";
+		$answer=ModelProduct::mdlShowProductcategoryorder($table,$item,$value,$order);
+		return $answer;
 	}
 
 	static public function ctrCreateProduct(){
@@ -269,6 +274,37 @@ class ProductController{
 				</script>';
 			 	}
 		}
+
+	}
+
+	static public function ctrShowAddingOfTheSales(){
+
+		$table = "product";
+
+		$answer = ModelProduct::mdlShowAddingOfTheSales($table);
+
+		return $answer;
+
+		if($answer == "ok"){
+			echo '<script>
+
+		swal({
+						type: "success",
+						title: "User was delete",
+						showConfirmButton: true,
+						confirmButtonText: "Close"
+			
+						}).then(function(result){
+
+							if(result.value){
+
+								window.location = "product";
+							}
+
+						})
+					
+				</script>';
+			 	}
 
 	}
 

@@ -259,7 +259,7 @@
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
-                  <input type="number" class="form-control input-group-lg" name="editSaleprice" id="editSaleprice" min="0" step="any" readonly required >
+                  <input type="number" class="form-control input-group-lg" name="editSaleprice" id="editSaleprice" min="0" step="any"  required >
                </div>
             </div>
             <br>

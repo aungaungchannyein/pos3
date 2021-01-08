@@ -28,6 +28,14 @@
             Add Sale
           </button>
         </a>
+        <button type="button" class="btn btn-default pull-right daterange-btn" id="daterange-btn">
+          <span>
+              <i class="fa fa-calendar"></i> Date Range
+            </span>
+
+            <i class="fa fa-caret-down"></i>
+
+        </button>
         </div>
         <div class="box-body">
           <table class="table table-bordered table-striped dt-responsive tables">
@@ -46,15 +54,32 @@
               </tr>
             </thead>
             <tbody>
-              <?php
+              
 
-              $item=null;
-              $value=null;
-              $sale=SaleController::ctrShowSale($item,$value);
+            
+            <?php
+
+          if(isset($_GET["initialDate"])){
+
+            $initialDate = $_GET["initialDate"];
+            $finalDate = $_GET["finalDate"];
+
+          }else{
+
+            $initialDate = null;
+            $finalDate = null;
+
+          }
+
+          //var_dump($initialDate);
+
+          $answer = SaleController::ctrSalesDatesRange($initialDate, $finalDate);
+
+          //var_dump($answer);
               
 
     
-              foreach ($sale as $key => $value) {
+          foreach ($answer as $key => $value) {
                 
                 echo' <tr> <td>'.($key+1).'</td>
               <td>'.$value["code"].'</td>';
@@ -75,7 +100,7 @@
               <td>'.$value["payment_method"].'</td>
               <td>'.number_format($value["net_price"]).'</td>
               <td>'.number_format($value["total"]).'</td>
-              <td>'.$value["date"].'</td>
+              <td>'.$value["saledate"].'</td>
               <td>
                 <div class="btn-group">
                  <button class="btn btn-info btnPrintSales" saleCode="'.$value["code"].'"><i class="fa fa-print"></i></button>

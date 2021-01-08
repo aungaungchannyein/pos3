@@ -27,7 +27,7 @@ $valueSale = $this->code;
 
 $answerSale = SaleController::ctrShowSale($itemSale, $valueSale);
 
-$saledate = substr($answerSale["date"],0,-8);
+$saledate = substr($answerSale["saledate"],0,-8);
 $products = json_decode($answerSale["product"], true);
 $netPrice = number_format($answerSale["net_price"],2);
 $tax = number_format($answerSale["tax"],2);
@@ -61,7 +61,9 @@ $pdf->startPageGroup();
 
 $pdf->AddPage();
 
-$fontname = TCPDF_FONTS::addTTFfont('../fonts/Pyidaungsu-2.5_Regular.ttf', 'TrueTypeUnicode', '', 32);
+//$fontname = TCPDF_FONTS::addTTFfont('../fonts/Zawgyi-One-20051130.ttf', 'TrueTypeUnicode', '', 32);
+
+$fontname = TCPDF_FONTS::addTTFfont('../fonts/Pyidaungsu-2.5.1_Regular.ttf', 'TrueTypeUnicode', '', 32);
 $pdf->SetFont($fontname, '', 14, true);
 
 
@@ -191,8 +193,10 @@ foreach ($products as $key => $item) {
 
 $itemProduct = "description";
 $valueProduct = $item["description"];
+$order="id";
 
-$answerProduct = ProductController::ctrShowProduct($itemProduct, $valueProduct);
+$answerProduct = ProductController::ctrShowProduct($itemProduct, $valueProduct,$order);
+//var_dump($answerProduct);
 
 $valueUnit = number_format($answerProduct["selling_price"], 2);
 
@@ -204,9 +208,7 @@ $block4 = <<<EOF
 
         <tr>
             
-            <td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">
-                $item[description]
-            </td>
+            <td style="border: 1px solid #666; color:#333; background-color:white; width:260px; text-align:center">$item[description]</td>
 
             <td style="border: 1px solid #666; color:#333; background-color:white; width:80px; text-align:center">
                 $item[quantity]
@@ -303,7 +305,7 @@ $pdf->writeHTML($block5, false, false, false, false, '');
 //SALIDA DEL ARCHIVO 
 //$fontname = TCPDF_FONTS::addTTFfont('Pyidaungsu-2.5_Regular.ttf', '', 32);
 
-$pdf->Output('bill.pdf', 'D');
+$pdf->Output('bill.pdf','I');
 
 }
 

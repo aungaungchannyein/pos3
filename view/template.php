@@ -29,8 +29,14 @@ session_start();
    <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="view/plugins/iCheck/all.css">
 
+   <!-- Daterange picker -->
+  <link rel="stylesheet" href="view/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="view/bower_components/morris.js/morris.css">
 
   <!-- jQuery 3 -->
   <script src="view/bower_components/jquery/dist/jquery.min.js"></script>
@@ -63,6 +69,18 @@ session_start();
 <script src="view/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="view/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 <script src="view/plugins/jqueryNumber/jqueryNumber.min.js"></script>
+
+<!-- daterangepicker http://www.daterangepicker.com/-->
+  <script src="view/bower_components/moment/min/moment.min.js"></script>
+  <script src="view/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+
+   <!-- Morris.js charts http://morrisjs.github.io/morris.js/-->
+  <script src="view/bower_components/raphael/raphael.min.js"></script>
+  <script src="view/bower_components/morris.js/morris.min.js"></script>
+
+  <!-- ChartJS http://www.chartjs.org/-->
+  <script src="view/bower_components/chart.js/Chart.js"></script>
   </head>
 
 <body class="hold-transition skin-blue sider-collapse sidebar-mini login-page">
@@ -132,5 +150,6 @@ session_start();
  <script src="view/js/product.js"></script>
  <script src="view/js/client.js"></script>
  <script src="view/js/sale.js"></script>
+ <script src="view/js/report.js"></script>
 </body>
 </html>

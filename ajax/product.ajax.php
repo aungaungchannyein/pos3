@@ -7,7 +7,8 @@ class AjaxProduct{
 
 		$item="id_category";
 		$value=$this->idCategory;
-		$answer=ProductController::ctrShowProduct($item,$value);
+		$order="id";
+		$answer=ProductController::ctrShowProduct($item,$value,$order);
 
 		echo json_encode($answer);
 
@@ -17,7 +18,8 @@ class AjaxProduct{
 	public function ajaxEditProductss(){
 			$item="id";
 			$value=$this->idProduct;
-			$answer=ProductController::ctrShowProduct($item,$value);
+			$order="id";
+			$answer=ProductController::ctrShowProduct($item,$value,$order);
 
 			echo json_encode($answer);
 	}
@@ -27,7 +29,8 @@ class AjaxProduct{
 
 			$item=null;
 			$value=null;
-			$answer=ProductController::ctrShowProduct($item,$value);
+			$order="id";
+			$answer=ProductController::ctrShowProduct($item,$value,$order);
 
 			echo json_encode($answer);
 
@@ -40,7 +43,8 @@ class AjaxProduct{
 	public function ajaxEditProducts(){
 		$item="description";
 			$value=$this->nameProduct;
-			$answer=ProductController::ctrShowProduct($item,$value);
+			$order="id";
+			$answer=ProductController::ctrShowProduct($item,$value,$order);
 
 			echo json_encode($answer);
 	}

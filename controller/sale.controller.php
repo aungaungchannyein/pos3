@@ -1,5 +1,10 @@
 <?php
 
+use Mike42\Escpos\Printer;
+use Mike42\Escpos\EscposImage;
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+
 class SaleController{
 	static public function ctrShowSale($item,$value){
 		$table="sale";
@@ -21,7 +26,8 @@ class SaleController{
 				$tableProduct="product";
 				$item="id";
 				$valueProductId=$value["id"];
-				$getProduct = ModelProduct::mdlShowProduct($tableProduct, $item, $valueProductId);
+				$order="id";
+				$getProduct = ModelProduct::mdlShowProduct($tableProduct, $item, $valueProductId,$order);
 
 				
 
@@ -70,6 +76,77 @@ class SaleController{
 			$answer = ModelSale::mdlAddSale($table, $data);
 
 			if($answer == "ok"){
+
+
+				 //$printer = "epson20";
+
+				 //$connector = new WindowsPrintConnector($printer);
+
+				 //$printer = new Printer($connector);
+
+				// $printer -> setJustification(Printer::JUSTIFY_CENTER);
+
+				// $printer -> text(date("Y-m-d H:i:s")."\n");//Invoice date
+
+				// $printer -> feed(1); //We feed paper 1 time*/
+
+				// $printer -> text("Inventory System"."\n");//Company name
+
+				// $printer -> text("ID: 71.759.963-9"."\n");//Company's ID
+
+				// $printer -> text("Address: 5th Ave. Miami Fl"."\n");//Company address
+
+				// $printer -> text("Phone: 300 786 52 49"."\n");//Company's phone
+
+				// $printer -> text("Invoice N.".$_POST["newSale"]."\n");//Invoice number
+
+				// $printer -> feed(1); //We feed paper 1 time*/
+
+				// $printer -> text("Customer: ".$getCustomer["name"]."\n");//Customer's name
+
+				// $tableSeller = "users";
+				// $item = "id";
+				// $seller = $_POST["idSeller"];
+
+				// $getSeller = UsersModel::MdlShowUsers($tableSeller, $item, $seller);
+
+				// $printer -> text("Seller: ".$getSeller["name"]."\n");//Seller's name
+
+				// $printer -> feed(1); //We feed paper 1 time*/
+
+				// foreach ($productsList as $key => $value) {
+
+				// 	$printer->setJustification(Printer::JUSTIFY_LEFT);
+
+				// 	$printer->text($value["description"]."\n");//Product's name
+
+				// 	$printer->setJustification(Printer::JUSTIFY_RIGHT);
+
+				// 	$printer->text("$ ".number_format($value["price"],2)." Und x ".$value["quantity"]." = $ ".number_format($value["totalPrice"],2)."\n");
+
+				// }
+
+				// $printer -> feed(1); //We feed paper 1 time*/			
+				
+				// $printer->text("NET: $ ".number_format($_POST["newNetPrice"],2)."\n"); //net price
+
+				// $printer->text("TAX: $ ".number_format($_POST["newTaxPrice"],2)."\n"); //tax value
+
+				// $printer->text("--------\n");
+
+				// $printer->text("TOTAL: $ ".number_format($_POST["saleTotal"],2)."\n"); //ahora va el total
+
+				// $printer -> feed(1); //We feed paper 1 time*/	
+
+				// $printer->text("Thanks for your purchase"); //We can add a footer
+
+				// $printer -> feed(3); //We feed paper 3 times*/
+
+				// $printer -> cut(); //We cut the paper, if the printer has the option
+
+				// $printer -> pulse(); //Through the printer we send a pulse to open the cash drawer.
+
+				// $printer -> close(); 
 
 				echo'<script>
 
@@ -283,7 +360,7 @@ class SaleController{
 
 			foreach($getSale as $key=>$value){
 				if($value["id_client"] == $deleteSale["id_client"]){
-					array_push($arrayDate,$value["date"]);
+					array_push($arrayDate,$value["saledate"]);
 				}
 			}
 
@@ -291,7 +368,7 @@ class SaleController{
 
 			if(count($arrayDate)>1){
 				//var_dump("hello");
-				if($deleteSale["date"]>$arrayDate[count($arrayDate)-2]){
+				if($deleteSale["saledate"]>$arrayDate[count($arrayDate)-2]){
 				//var_dump("hello2");
 				$item2="last_purchase";
 				$tableCustomer2="client";
@@ -385,5 +462,108 @@ class SaleController{
 
 		}
 
+	}
+
+	static public function ctrSalesDatesRange($initialDate, $finalDate){
+
+		$table = "sale";
+
+		$answer = ModelSale::mdlSalesDatesRange($table, $initialDate, $finalDate);
+
+		return $answer;
+		
+	}
+
+	static public function ctrDownloadReport(){
+
+		if(isset($_GET["report"])){
+
+			$table = "sale";
+
+			if(isset($_GET["initialDate"]) && isset($_GET["finalDate"])){
+
+				$sales = ModelSale::mdlSalesDatesRange($table, $_GET["initialDate"], $_GET["finalDate"]);
+
+			}else{
+
+				$item = null;
+				$value = null;
+
+				$sales = ModelSale::mdlShowSale($table, $item, $value);
+
+			}
+
+			/*=============================================
+			WE CREATE EXCEL FILE
+			=============================================*/
+
+			$name = $_GET["report"].'.xls';
+
+			header('Expires: 0');
+			header('Cache-control: private');
+			header("Content-type: application/vnd.ms-excel"); // Excel file
+			header("Cache-Control: cache, must-revalidate"); 
+			header('Content-Description: File Transfer');
+			header('Last-Modified: '.date('D, d M Y H:i:s'));
+			header("Pragma: public"); 
+			header('Content-Disposition:; filename="'.$name.'"');
+			header("Content-Transfer-Encoding: binary");
+
+			echo utf8_decode("<table border='0'> 
+
+					<tr> 
+					<td style='font-weight:bold; border:1px solid #eee;'>Code</td> 
+					<td style='font-weight:bold; border:1px solid #eee;'>customer</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>User</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>quantity</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>products</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>tax</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>netPrice</td>		
+					<td style='font-weight:bold; border:1px solid #eee;'>TOTAL</td>		
+					<td style='font-weight:bold; border:1px solid #eee;'>METODO DE PAGO</td	
+					<td style='font-weight:bold; border:1px solid #eee;'>FECHA</td>		
+					</tr>");
+
+			foreach ($sales as $row => $item){
+
+				$customer = ClientController::ctrShowClient("id", $item["id_client"]);
+				$user = UserController::ctrShowUser("id", $item["id_seller"]);
+
+			 echo utf8_decode("<tr>
+			 			<td style='border:1px solid #eee;'>".$item["code"]."</td> 
+			 			<td style='border:1px solid #eee;'>".$customer["name"]."</td>
+			 			<td style='border:1px solid #eee;'>".$user["name"]."</td>
+			 			<td style='border:1px solid #eee;'>");
+
+			 	$products =  json_decode($item["product"], true);
+
+			 	foreach ($products as $key => $valueproducts) {
+			 			
+			 			echo utf8_decode($valueproducts["quantity"]."<br>");
+			 		}
+
+			 	echo utf8_decode("</td><td style='border:1px solid #eee;'>");	
+
+		 		foreach ($products as $key => $valueproducts) {
+			 			
+		 			echo utf8_decode($valueproducts["description"]."<br>");
+		 		
+		 		}
+
+		 		echo utf8_decode("</td>
+					<td style='border:1px solid #eee;'>$ ".number_format($item["tax"],2)."</td>
+					<td style='border:1px solid #eee;'>$ ".number_format($item["net_price"],2)."</td>	
+					<td style='border:1px solid #eee;'>$ ".number_format($item["total"],2)."</td>
+					<td style='border:1px solid #eee;'>".$item["payment_method"]."</td>
+					<td style='border:1px solid #eee;'>".substr($item["saledate"],0,10)."</td>		
+		 			</tr>");
+
+			}
+
+
+			echo "</table>";
+
+		}
+		
 	}
 	}

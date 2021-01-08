@@ -1,3 +1,8 @@
+if(localStorage.getItem("captureRange")!=null){
+  $(".daterange-btn span").html(localStorage.getItem("captureRange"));
+}else{
+  $(".daterange-btn span").html('<i class="fa fa-calendar"></i> Date Range')
+}
 
 
 $('.saleTable').DataTable( {
@@ -558,8 +563,97 @@ $(".tables").on("click", ".btnPrintSales", function(){
 
   var code=$(this).attr("saleCode");
   //console.log("success",code);
-  window.open("extensions/TCPDF-main/examples/bill.php?code="+code,"_blank");
+  window.open("extensions/TCPDF-main/examples/bill.php?code="+code,"bill.pdf");
 })
 
 //extensions/TCPDF-main/examples/
 //extensions/tcpdf/pdf/
+//extensions/tcpdf-code/examples
+//extensions/vendor/tecnickcom/tcpdf/examples
+
+
+$('#daterange-btn').daterangepicker(
+  {
+    ranges   : {
+      'Today'       : [moment(), moment()],
+      'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+      'Last 7 days' : [moment().subtract(6, 'days'), moment()],
+      'Last 30 days': [moment().subtract(29, 'days'), moment()],
+      'this month'  : [moment().startOf('month'), moment().endOf('month')],
+      'Last month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+    },
+    startDate: moment(),
+    endDate  : moment()
+  },
+  function (start, end) {
+    $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+
+    var initialDate = start.format('YYYY-MM-DD');
+
+    var finalDate = end.format('YYYY-MM-DD');
+
+    var captureRange = $("#daterange-btn span").html();
+   
+    localStorage.setItem("captureRange", captureRange);
+    console.log("localStorage", localStorage);
+
+    window.location = "index.php?root=manage-sale&initialDate="+initialDate+"&finalDate="+finalDate;
+
+  }
+
+)
+
+$(".daterangepicker.opensleft .range_inputs .cancelBtn").on("click", function(){
+
+  localStorage.removeItem("captureRange");
+  localStorage.clear();
+  window.location = "manage-sale";
+})
+
+$(".daterangepicker.opensleft .ranges li").on("click", function(){
+
+  var todayButton = $(this).attr("data-range-key");
+
+  if(todayButton == "Today"){
+
+    var d = new Date();
+    
+    var day = d.getDate();
+    var month= d.getMonth()+1;
+    var year = d.getFullYear();
+
+    if(month < 10 && day < 10){
+
+      var initialDate = year+"-0"+month+"-"+day;
+      var finalDate = year+"-0"+month+"-"+day;
+
+      var initialDate = year+"-0"+month+"-0"+day;
+      var finalDate = year+"-0"+month+"-0"+day;
+
+    }else if(day < 10){
+
+      var initialDate = year+"-"+month+"-0"+day;
+      var finalDate = year+"-"+month+"-0"+day;
+
+    }else if(month < 10 ){
+
+      var initialDate = year+"-0"+month+"-0"+day;
+      var finalDate = year+"-0"+month+"-0"+day;
+
+      var initialDate = year+"-0"+month+"-"+day;
+      var finalDate = year+"-0"+month+"-"+day;
+
+    }else{
+
+      var initialDate = year+"-"+month+"-"+day;
+        var finalDate = year+"-"+month+"-"+day;
+
+    } 
+
+      localStorage.setItem("captureRange", "Today");
+
+      window.location = "index.php?root=manage-sale&initialDate="+initialDate+"&finalDate="+finalDate;
+
+  }
+
+})

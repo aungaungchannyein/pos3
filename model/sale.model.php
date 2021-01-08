@@ -100,5 +100,58 @@
 			$stmt->close();
 			$stmt=null;
 		}
+
+		static public function mdlSalesDatesRange($table, $initialDate, $finalDate){
+
+		if($initialDate == null){
+
+			$stmt = Connection::Connector()->prepare("SELECT * FROM $table ORDER BY id ASC");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();	
+
+
+		}else if($initialDate == $finalDate){
+
+			$stmt =  Connection::Connector()->prepare("SELECT * FROM $table WHERE saledate like '%$finalDate%'");
+
+			$stmt -> bindParam(":saledate", $finalDate, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$actualDate = new DateTime();
+			$actualDate ->add(new DateInterval("P1D"));
+			$actualDatePlusOne = $actualDate->format("Y-m-d");
+
+			$finalDate2 = new DateTime($finalDate);
+			$finalDate2 ->add(new DateInterval("P1D"));
+			$finalDatePlusOne = $finalDate2->format("Y-m-d");
+
+			if($finalDatePlusOne == $actualDatePlusOne){
+
+			$stmt =  Connection::Connector()->prepare("SELECT * FROM $table WHERE saledate BETWEEN '$initialDate' AND '$finalDatePlusOne'");
+
+			}else{
+
+
+				$stmt =  Connection::Connector()->prepare("SELECT * FROM $table WHERE saledate BETWEEN '$initialDate' AND '$finalDate'");
+
+		 	}
+		
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		 }
+
 	}
+
+}
+
+	
 

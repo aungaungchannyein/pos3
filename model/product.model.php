@@ -4,7 +4,7 @@
 
 	class ModelProduct{
 
-		static public function mdlShowProduct($table,$item,$value){
+		static public function mdlShowProduct($table,$item,$value,$order){
 
 			if($item!=null){
 
@@ -18,7 +18,7 @@
 
 			}else{
 
-				$stmt=Connection::Connector()->prepare("SELECT * FROM $table");
+				$stmt=Connection::Connector()->prepare("SELECT * FROM $table ORDER BY id");
 				$stmt->bindParam(":".$item,$value,PDO::PARAM_STR);
 				$stmt->execute();
 
@@ -27,6 +27,18 @@
 			}
 				$stmt->close();
 				$stmt=null;
+		}
+
+		static  public function  mdlShowProductcategoryorder($table,$item,$value,$order){
+
+				$stmt=Connection::Connector()->prepare("SELECT * FROM $table ORDER BY sold_quantity DESC");
+				$stmt->bindParam(":".$item,$value,PDO::PARAM_STR);
+				$stmt->execute();
+
+				return $stmt->fetchAll();
+				$stmt->close();
+				$stmt=null;
+
 		}
 
 		static public function mdlAddProduct($table,$data){
@@ -110,4 +122,17 @@
 			$stmt=null;
 
 		}
+
+		static public function mdlShowAddingOfTheSales($table){
+
+			$stmt =Connection::Connector()->prepare("SELECT SUM(sold_quantity) as total FROM $table");
+
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+			$stmt -> close();
+
+			$stmt = null;
+	}
 	}

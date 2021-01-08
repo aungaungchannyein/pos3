@@ -1,5 +1,5 @@
  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+    
     <section class="content-header">
       <h1>
        Sale Report
@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
 
         <li>
-          <a href="#"><i class="fa fa-dashboard"></i>Home</a>
+          <a href="home"><i class="fa fa-dashboard"></i>Home</a>
         </li>
 
         
@@ -17,33 +17,89 @@
 
     </section>
 
-    <!-- Main content -->
+  
     <section class="content">
 
-      <!-- Default box -->
+      
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
+          <div class="input-group">
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
+            <button type="button" class="btn btn-default daterange-btn2" id="daterange-btn2">
+              <span>
+              <i class="fa fa-calendar"></i> Date Range
+              </span>
+
+              <i class="fa fa-caret-down"></i>
+
+        </button>
+         
+
           </div>
+          <div class="box-tools pull-right">
+            <?php
+              if(isset($_GET["initialDate"])){
+
+                echo'<a href="view/module/download-report.php?report=report&inicialDate='.$_GET["initialDate"].'&finalDate='.$_GET["finalDate"].'">';
+              }else{
+                echo '<a href="view/module/download-report.php?report=report">';
+              }
+              
+
+            ?>
+            <button class="btn btn-success" style="margin-top:5px">Export to Excel</button>
+          </div>
+          <div class="box-tools pull-right"></div>
+
+
+
+
         </div>
         <div class="box-body">
-          Start creating your amazing application!
+
+          <div class="row">
+            <div clas="col-xs-12">
+              <?php
+              include "reports/sales-graph.php";
+
+              ?>
+            </div>
+            <div class="col-md-6 col-xs-12">
+             
+            <?php
+
+            include "reports/bestseller-products.php";
+
+            ?>
+
+
+          </div>
+            <div class="col-md-6 col-xs-12">
+           
+            <?php
+
+            include "reports/sellers.php";
+
+            ?>
+
+         </div>
+          <div class="col-md-6 col-xs-12">
+           
+            <?php
+
+            include "reports/buyers.php";
+
+            ?>
+
+         </div>
+          </div>
+      
         </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
-        </div>
-        <!-- /.box-footer-->
+        
+   
       </div>
-      <!-- /.box -->
+     
 
     </section>
-    <!-- /.content -->
+    
   </div>

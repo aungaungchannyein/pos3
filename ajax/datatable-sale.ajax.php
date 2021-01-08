@@ -8,7 +8,8 @@ class TableSaleProduct{
 
 		$item=null;
         $value=null;
-		$product=ProductController::ctrShowProduct($item,$value);
+        $order="id";
+		$product=ProductController::ctrShowProduct($item,$value,$order);
 		
 		$dataJson='{
   				"data": [';
