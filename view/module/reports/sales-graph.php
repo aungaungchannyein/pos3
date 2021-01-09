@@ -1,6 +1,7 @@
 <?php
 
 error_reporting(0);
+//var_dump("erteriu",$_POST["initialDate"]);
 	if(isset($_GET["initialDate"])){
 
 		 if(isset($_GET["initialDate"])){

@@ -1,7 +1,10 @@
 <aside class="main-sidebar">
 	<section class="sidebar">
 		<ul class="sidebar-menu">
-			<li class="active">
+			<?php
+			if($_SESSION["profile"] =="Administrator"){
+
+			echo'<li class="active">
 				<a href="home">
 					<i class="fa fa-home"></i>
 					<span>Home</span>
@@ -12,8 +15,10 @@
 					<i class="fa fa-user"></i>
 					<span>User</span>
 				</a>
-			</li>
-			<li >
+			</li>';
+		}
+			 if($_SESSION["profile"] =="Administrator" || $_SESSION["profile"] =="special"){
+			echo'<li >
 				<a href="category">
 					<i class="fa fa-user"></i>
 					<span>Category</span>
@@ -24,8 +29,11 @@
 					<i class="fa fa-product-hunt"></i>
 					<span>Product</span>
 				</a>
-			</li>
-			<li >
+			</li>';
+		}
+		 if($_SESSION["profile"] =="Administrator" || $_SESSION["profile"] =="seller"){
+
+			echo'<li >
 				<a href="client">
 					<i class="fa fa-users"></i>
 					<span>client</span>
@@ -51,16 +59,18 @@
 							<i class="fa fa-circle-o"></i>
 							<span>Create Sale</span>
 						</a>
-					</li>
-					<li>
+					</li>';
+		}
+		if($_SESSION["profile"] =="Administrator"){
+					echo'<li>
 						<a href="report">
 							<i class="fa fa-circle-o"></i>
 							<span>Sale Report</span>
 						</a>
-					</li>
+					</li>';}
 
 					
-					
+					?>
 				</ul>
 			</li>
 

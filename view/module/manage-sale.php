@@ -1,3 +1,18 @@
+<?php
+
+if($_SESSION["profile"] == "special"){
+
+  echo '<script>
+
+    window.location = "home";
+
+  </script>';
+
+  return;
+
+}
+
+?>
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -103,12 +118,14 @@
               <td>'.$value["saledate"].'</td>
               <td>
                 <div class="btn-group">
-                 <button class="btn btn-info btnPrintSales" saleCode="'.$value["code"].'"><i class="fa fa-print"></i></button>
+                 <button class="btn btn-info btnPrintSales" saleCode="'.$value["code"].'"><i class="fa fa-print"></i></button>';
 
-                  <button class="btn btn-warning btnEditSale" id="btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+                 if($_SESSION["profile"] =="Administrator"){
 
-                  <button class="btn btn-danger btnDeleteSales" idSale="'.$value["id"].'"><i class="fa fa-times"></i></button>
-                </div>
+                  echo'<button class="btn btn-warning btnEditSale" id="btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+
+                  <button class="btn btn-danger btnDeleteSales" idSale="'.$value["id"].'"><i class="fa fa-times"></i></button>';}
+                echo'</div>
               </td>
             </tr>';
               }

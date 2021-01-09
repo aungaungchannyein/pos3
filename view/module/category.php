@@ -1,3 +1,19 @@
+ <?php
+
+if($_SESSION["profile"] == "seller"){
+
+  echo '<script>
+
+    window.location = "home";
+
+  </script>';
+
+  return;
+
+}
+
+?>
+
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -51,9 +67,11 @@
               <td class="text-bold">'.$value["category"].'</td>
               <td>
                 <div class="btn-group">
-                  <button class="btn btn-warning btnEditCategory" idCategory="'.$value["id"].'" data-toggle="modal" data-target="#modalEditCategory"><i class="fa fa-pencil"></i></button>
-                  <button class="btn btn-danger btnDeleteCategory" CategoryId="'.$value["id"].'"  ><i class="fa fa-times"></i></button>
-                </div>
+                  <button class="btn btn-warning btnEditCategory" idCategory="'.$value["id"].'" data-toggle="modal" data-target="#modalEditCategory"><i class="fa fa-pencil"></i></button>';
+                  if($_SESSION["profile"] =="Administrator"){
+
+                  echo'<button class="btn btn-danger btnDeleteCategory" CategoryId="'.$value["id"].'"  ><i class="fa fa-times"></i></button>';}
+                echo'</div>
               </td></tr>';
               }
 

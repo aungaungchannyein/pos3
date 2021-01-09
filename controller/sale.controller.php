@@ -566,4 +566,14 @@ class SaleController{
 		}
 		
 	}
+
+	public function ctrAddingTotalSales(){
+
+		$table = "sale";
+
+		$answer = ModelSale::mdlAddingTotalSales($table);
+
+		return $answer;
+
+	}
 	}

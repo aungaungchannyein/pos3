@@ -148,10 +148,25 @@
 			return $stmt -> fetchAll();
 
 		 }
+		}
+
+		static public function mdlAddingTotalSales($table){	
+
+		$stmt = Connection::Connector()->prepare("SELECT SUM(net_price) as total FROM $table");
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+}
 
 	}
 
-}
+	
 
 	
 

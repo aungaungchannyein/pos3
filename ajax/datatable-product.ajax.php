@@ -41,9 +41,13 @@ class TableProduct{
   	}else{
   		$stock="<button class='btn btn-success'>".$product[$i]["stock"]."</button>";
   	}
-  	
 
-  	$button="<div class='btn-group'><button class='btn btn-warning btnEditProduct' idProduct='".$product[$i]["id"]."' data-toggle='modal' data-target='#modalEditProduct'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnDeleteProduct' productId='".$product[$i]["id"]."' productPhoto='".$product[$i]["photo"]."' productCode='".$product[$i]["code"]."'><i class='fa fa-times'></i></button></div>";
+
+    if(isset($_GET["hiddenProfile"]) && $_GET["hiddenProfile"] == "special") 
+      {
+    $button =  "<div class='btn-group'><button class='btn btn-warning btnEditProduct' idProduct='".$product[$i]["id"]."' data-toggle='modal' data-target='#modalEditProduct'><i class='fa fa-pencil'></i></button></div>";
+      }else{
+  	$button="<div class='btn-group'><button class='btn btn-warning btnEditProduct' idProduct='".$product[$i]["id"]."' data-toggle='modal' data-target='#modalEditProduct'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnDeleteProduct' productId='".$product[$i]["id"]."' productPhoto='".$product[$i]["photo"]."' productCode='".$product[$i]["code"]."'><i class='fa fa-times'></i></button></div>";}
 
   	$dataJson.='
     [

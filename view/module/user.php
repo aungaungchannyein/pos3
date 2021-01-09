@@ -1,3 +1,19 @@
+<?php
+
+if($_SESSION["profile"] == "seller" || $_SESSION["profile"] == "special" ){
+
+  echo '<script>
+
+    window.location = "home";
+
+  </script>';
+
+  return;
+
+}
+
+?>
+
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">

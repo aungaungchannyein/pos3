@@ -8,36 +8,45 @@
 
 // })
 
-$('.tableProduct').DataTable( {
-        "ajax": "ajax/datatable-product.ajax.php",
-        "deferRender":true,
-        "retrieve":true,
-        "processing":true,
-        "language":{
-    "decimal":        "",
-    "emptyTable":     "No data available in table",
-    "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
-    "infoEmpty":      "Showing 0 to 0 of 0 entries",
-    "infoFiltered":   "(filtered from _MAX_ total entries)",
-    "infoPostFix":    "",
-    "thousands":      ",",
-    "lengthMenu":     "Show _MENU_ entries",
-    "loadingRecords": "Loading...",
-    "processing":     "Processing...",
-    "search":         "Search:",
-    "zeroRecords":    "No matching records found",
-    "paginate": {
-        "first":      "First",
-        "last":       "Last",
-        "next":       "Next",
-        "previous":   "Previous"
-    },
-    "aria": {
-        "sortAscending":  ": activate to sort column ascending",
-        "sortDescending": ": activate to sort column descending"
-    }
-}
-    } );
+var hiddenProfile=$('#hiddenProfile').val();
+//console.log(profile);
+$('.tableProduct').DataTable({
+	"ajax": "ajax/datatable-product.ajax.php?hiddenProfile="+hiddenProfile, 
+	"deferRender": true,
+	"retrieve": true,
+	"processing": true
+});
+
+// $('.tableProduct').DataTable( {
+//         "ajax": "ajax/datatable-product.ajax.php",
+//         "deferRender":true,
+//         "retrieve":true,
+//         "processing":true,
+//         "language":{
+//     "decimal":        "",
+//     "emptyTable":     "No data available in table",
+//     "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+//     "infoEmpty":      "Showing 0 to 0 of 0 entries",
+//     "infoFiltered":   "(filtered from _MAX_ total entries)",
+//     "infoPostFix":    "",
+//     "thousands":      ",",
+//     "lengthMenu":     "Show _MENU_ entries",
+//     "loadingRecords": "Loading...",
+//     "processing":     "Processing...",
+//     "search":         "Search:",
+//     "zeroRecords":    "No matching records found",
+//     "paginate": {
+//         "first":      "First",
+//         "last":       "Last",
+//         "next":       "Next",
+//         "previous":   "Previous"
+//     },
+//     "aria": {
+//         "sortAscending":  ": activate to sort column ascending",
+//         "sortDescending": ": activate to sort column descending"
+//     }
+// }
+//     } );
 
 $(".newCategory").change(function(){
 

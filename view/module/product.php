@@ -48,6 +48,8 @@
               </tr>
          
           </table>
+          <input type="hidden" value="<?php echo $_SESSION['profile'];?>" id="hiddenProfile" class="hiddenProfile">
+
         </div>
       
      
