@@ -96,7 +96,7 @@ class SaleController{
 
 				// $printer -> text("Address: 5th Ave. Miami Fl"."\n");//Company address
 
-				// $printer -> text("Phone: 300 786 52 49"."\n");//Company's phone
+				// $printer -> text("Phone: 092056316"."\n");//Company's phone
 
 				// $printer -> text("Invoice N.".$_POST["newSale"]."\n");//Invoice number
 
@@ -104,7 +104,7 @@ class SaleController{
 
 				// $printer -> text("Customer: ".$getCustomer["name"]."\n");//Customer's name
 
-				// $tableSeller = "users";
+				// $tableSeller = "user";
 				// $item = "id";
 				// $seller = $_POST["idSeller"];
 
