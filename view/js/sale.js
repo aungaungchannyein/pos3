@@ -563,7 +563,10 @@ $(".tables").on("click", ".btnPrintSales", function(){
 
   var code=$(this).attr("saleCode");
   //console.log("success",code);
-  window.open("extensions/TCPDF-main/examples/bill.php?code="+code,"bill.pdf");
+  //window.open("extensions/TCPDF-main/examples/bill.php?code="+code,"bill.pdf");
+  window.open("pdf_example/bill.php?code="+code,"bill.pdf");
+  //window.open("pdf_example/bill2.php?code="+code,"bill.pdf");
+
 })
 
 //extensions/TCPDF-main/examples/
