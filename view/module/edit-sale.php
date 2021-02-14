@@ -182,6 +182,7 @@ if($_SESSION["profile"] == "seller" || $_SESSION["profile"] == "special"){
                               <option value="cash">Cash</option>
                               <option value="CC">Credit Card</option>
                               <option value="DC">Debit Card</option>
+                              <option value="notPaid">Not Paid</option>
 
                           </select>
                         </div>

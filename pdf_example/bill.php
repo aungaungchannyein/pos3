@@ -33,6 +33,7 @@ $products = json_decode($answerSale["product"], true);
 $netPrice = number_format($answerSale["net_price"],2);
 $tax = number_format($answerSale["tax"],2);
 $totalPrices = number_format($answerSale["total"],2);
+$notpaid= $answerSale["payment_method"];
 
 //TRAEMOS LA INFORMACIÓN DEL Customer
 
@@ -133,14 +134,19 @@ $blockheader= <<<EOF
 <table style="font-size:13px;" border="0" >
 
 	<tr>
+
+		<td style="width:10px;">
+		No. 
+		</td>
+
 	
-		<td style="width:100px;">
+		<td style="width:82px; text-align:center">
 		Description 
 		</td>
 
 	
 	
-		<td style="width:50px; text-align:center">
+		<td style="width:60px; text-align:center">
 		unit
 		<br>
 		</td>
@@ -167,6 +173,8 @@ $mpdf->writeHTML($blockheader);
 
 foreach ($products as $key => $item) {
 
+$key+=1;
+
 $unitValue = number_format($item["price"], 2);
 
 $totalPrice = number_format($item["totalPrice"], 2);
@@ -176,14 +184,18 @@ $block2 = <<<EOF
 <table style="font-size:13px;" border="0">
 
 	<tr>
+
+		<td style="width:20px; text-align:right">
+		$key
+		</td>
 	
-		<td style="width:100px; text-align:left">
+		<td style="width:80px; text-align:left">
 		$item[description] 
 		</td>
 
 	
 	
-		<td style="width:50px; text-align:right">
+		<td style="width:60px; text-align:right">
 		$unitValue
 		<br>
 		</td>
@@ -209,13 +221,14 @@ $mpdf->writeHTML($block2);
 
 // ---------------------------------------------------------
 
+
 $block3 = <<<EOF
 
 <table style="font-size:13px; text-align:right">
 
 	<tr>
 	
-		<td style="width:170px;">
+		<td style="width:180px;">
 			 NET: 
 		</td>
 
@@ -227,7 +240,7 @@ $block3 = <<<EOF
 
 	<tr>
 	
-		<td style="width:170px;">
+		<td style="width:180px;">
 			 TAX: 
 		</td>
 
@@ -251,7 +264,7 @@ $block3 = <<<EOF
 
 	<tr>
 	
-		<td style="width:170px;">
+		<td style="width:180px;">
 			 TOTAL: 
 		</td>
 
@@ -278,6 +291,53 @@ $block3 = <<<EOF
 EOF;
 
 $mpdf->writeHTML($block3);
+
+if ($notpaid == "မရှင်းသေး"){
+
+$block4 = <<<EOF
+
+<table style="font-size:13px; text-align:center;">
+
+	
+
+	<tr>
+	
+		<td >
+			<span style="text-align:center;"><h1>****မရှင်းသေး*****</h1></span>
+		</td>
+
+	</tr>
+
+</table>
+
+
+
+EOF;
+
+$mpdf->writeHTML($block4);
+}
+else{
+$block4 = <<<EOF
+
+<table style="font-size:13px; text-align:center;">
+
+	<tr>
+	
+		<td >
+			<span style="text-align:center;"><h1>****ရှင်းပြီး*****</h1></span>
+		</td>
+
+	</tr>
+
+</table>
+
+
+
+EOF;
+
+$mpdf->writeHTML($block4);
+
+}
 $mpdf->Output();
 
 }

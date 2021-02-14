@@ -216,7 +216,8 @@ class SaleController{
 			 	$tableProduct="product";
 				$item="id";
 			 	$valueProductId=$value["id"];
-			 	$getProduct = ModelProduct::mdlShowProduct($tableProduct, $item, $valueProductId);
+			 	$order="id";
+			 	$getProduct = ModelProduct::mdlShowProduct($tableProduct, $item, $valueProductId,$order);
 
 
 			 	$item1a = "sold_quantity";
@@ -262,7 +263,8 @@ class SaleController{
 				$tableProduct_2="product";
 				$item_2="id";
 				$valueProductId_2=$value["id"];
-				$getProduct_2 = ModelProduct::mdlShowProduct($tableProduct_2, $item_2, $valueProductId_2);
+				$order="id";
+				$getProduct_2 = ModelProduct::mdlShowProduct($tableProduct_2, $item_2, $valueProductId_2,$order);
 
 				
 
@@ -403,7 +405,8 @@ class SaleController{
 			 	$tableProduct="product";
 				$item="id";
 			 	$valueProductId=$value["id"];
-			 	$getProduct = ModelProduct::mdlShowProduct($tableProduct, $item, $valueProductId);
+			 	$order ="id";
+			 	$getProduct = ModelProduct::mdlShowProduct($tableProduct, $item, $valueProductId,$order);
 
 
 			 	$item1a = "sold_quantity";

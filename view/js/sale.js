@@ -398,7 +398,7 @@ $("#newPaymentMethod").change(function(){
             $('#newCashValue').number( true, 2);
             $('#newCashChange').number( true, 2);
             listMethods()
-    }else{
+    }else {
         $(this).parent().parent().removeClass('col-xs-4');
 
         $(this).parent().parent().addClass('col-xs-6');
@@ -476,7 +476,12 @@ function listMethods(){
 
         $("#listPaymentMethod").val("cash");
 
-    }else{
+    }else if ($("#newPaymentMethod").val() == "notPaid") {
+
+      $("#listPaymentMethod").val("မရှင်းသေး");
+      
+    }
+    else {
 
         $("#listPaymentMethod").val($("#newPaymentMethod").val()+"-"+$("#newTransactionCode").val());
 
