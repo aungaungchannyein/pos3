@@ -58,6 +58,7 @@ class TableProduct{
       "'.$category["category"].'",
       "'.$stock.'",
       "'.$product[$i]["selling_price"].'",
+      "'.$product[$i]["whole_selling_price"].'",
       "'.$product[$i]["buying_price"].'",
       "'.$product[$i]["date"].'",
       "'.$button.'"

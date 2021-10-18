@@ -20,6 +20,7 @@ class ProductController{
 			if(preg_match('/\P{Myanmar}+$/',$_POST["newDescription"]) &&
 			 preg_match('/^[0-9]+$/',$_POST["newStock"]) && 
 			 preg_match('/^[0-9.]+$/',$_POST["newBuyprice"]) && 
+			 preg_match('/^[0-9.]+$/',$_POST["newWholeSaleprice"]) &&
 			 preg_match('/^[0-9.]+$/',$_POST["newSaleprice"])) {
 
 			 	$photo="view/img/products/default/anonymous.png";
@@ -69,6 +70,7 @@ class ProductController{
 			 				"stock"=>$_POST["newStock"],
 			 				"buying_price"=>$_POST["newBuyprice"],
 			 				"selling_price"=>$_POST["newSaleprice"],
+			 				"whole_selling_price"=>$_POST["newWholeSaleprice"],
 			 				"photo"=>$photo
 			 				);
 			$answer=ModelProduct::mdlAddProduct($table,$data);
@@ -123,7 +125,8 @@ class ProductController{
 		if(isset($_POST["editDescription"])){
 			if(preg_match('/\P{Myanmar}+$/',$_POST["editDescription"]) &&
 			 preg_match('/^[0-9]+$/',$_POST["editStock"]) && 
-			 preg_match('/^[0-9.]+$/',$_POST["editBuyprice"]) && 
+			 preg_match('/^[0-9.]+$/',$_POST["editBuyprice"]) &&
+			 preg_match('/^[0-9.]+$/',$_POST["editWholeSaleprice"]) && 
 			 preg_match('/^[0-9.]+$/',$_POST["editSaleprice"])) {
 
 			 	$photo=$_POST["currentPhoto"];
@@ -188,6 +191,7 @@ class ProductController{
 			 				"stock"=>$_POST["editStock"],
 			 				"buying_price"=>$_POST["editBuyprice"],
 			 				"selling_price"=>$_POST["editSaleprice"],
+			 				"whole_selling_price"=>$_POST["editWholeSaleprice"],
 			 				"photo"=>$photo
 			 				);
 			$answer=ModelProduct::mdlEditProduct($table,$data);

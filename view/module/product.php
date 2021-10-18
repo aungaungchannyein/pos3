@@ -40,6 +40,7 @@
                 <th>Category</th>
                 <th>Stock</th>
                 <th>Sale price</th>
+                <th>Whole Sale price</th>
                 <th>Buy price</th>
                 <th>Date</th>
                 <th>Action</th>
@@ -138,9 +139,19 @@
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
                   <input type="number" class="form-control input-group-lg" name="newSaleprice" id="newSaleprice" min="0" step="any" placeholder="Selling price('ရောင်း ဈေး')" required >
                </div>
+              </div>
             </div>
             <br>
-            <div class="col-xs-6">
+            <div>
+               <div class="col-xs-12 col-sm-6">
+                 <div class="form-group">
+                    <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
+                    <input type="number" class="form-control input-group-lg" name="newWholeSaleprice" id="newWholeSaleprice" min="0" step="any" placeholder="'အများ ဈေး'" required >
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6">
               <div class="form-group">
                 <label>
                   <input type="checkbox" class=" percent" checked>
@@ -148,7 +159,7 @@
                 </label>  
               </div>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-sm-6">
               <div class="input-group">
                 <input type="number" class="form-control input-group-lg newPercentage" min="0" value="40" required>
                 <span class="input-group-addon"><i class="fa fa-percent"></i></span>
@@ -264,8 +275,20 @@
                   <input type="number" class="form-control input-group-lg" name="editSaleprice" id="editSaleprice" min="0" step="any"  required >
                </div>
             </div>
-            <br>
-            <div class="col-xs-6">
+          </div>
+          <br>
+          <div>
+          <div class="col-xs-12 col-sm-6">
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
+                  <input type="number" class="form-control input-group-lg" name="editWholeSaleprice" id="editWholeSaleprice" min="0" step="any"  required >
+               </div>
+            </div>
+          </div>
+
+           
+            <div class="col-xs-6 col-sm-6">
               <div class="form-group">
                 <label>
                   <input type="checkbox" class="minimal percent" checked>
@@ -273,14 +296,14 @@
                 </label>  
               </div>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-6 col-sm-6">
               <div class="input-group">
                 <input type="number" class="form-control input-group-lg newPercentage" min="0" value="40" required>
                 <span class="input-group-addon"><i class="fa fa-percent"></i></span>
               </div>
             </div>
 
-            </div>
+          
           </div>
           <div class="form-group">
             <div class="panel">Add Photo</div>

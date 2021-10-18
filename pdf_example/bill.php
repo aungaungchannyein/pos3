@@ -177,6 +177,14 @@ $key+=1;
 
 $unitValue = number_format($item["price"], 2);
 
+if(number_format($item["quantity"]) > 4){
+	$unitValue = number_format($item["wholeprice"], 2);
+
+}else{
+	$unitValue = number_format($item["price"], 2);
+
+}
+
 $totalPrice = number_format($item["totalPrice"], 2);
 
 $block2 = <<<EOF
@@ -292,7 +300,7 @@ EOF;
 
 $mpdf->writeHTML($block3);
 
-if ($notpaid == "မရှင်းသေး"){
+if ($notpaid == "NOT-PAID"){
 
 $block4 = <<<EOF
 

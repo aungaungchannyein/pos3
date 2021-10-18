@@ -208,6 +208,8 @@ $(".tableProduct tbody").on("click", "button.btnEditProduct", function(){
 			$('#editStock').val(response["stock"]);
 			$('#editBuyprice').val(response["buying_price"]);
 			$('#editSaleprice').val(response["selling_price"]);
+			$('#editWholeSaleprice').val(response["whole_selling_price"]);
+
 
 			if(response["photo"]!=""){
 				$(".preview").attr("src",(response["photo"]));

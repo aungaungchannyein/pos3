@@ -125,6 +125,7 @@ if($_SESSION["profile"] == "seller" || $_SESSION["profile"] == "special"){
                       <div class="input-group">
                         <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                         <input type="text" class="form-control newProductPrice" realPrice="'.$requestProduct["selling_price"].'" name="newProductPrice"  value="'.$value["totalPrice"].'" readonly required>
+                        <input type="hidden" class="form-control newWholeProductPrice" realWholePrice="'.$requestProduct["whole_selling_price"].'" name="newWholeProductPrice"  value="'.$value["totalPrice"].'" readonly required>
                         
                       </div>
                     </div>

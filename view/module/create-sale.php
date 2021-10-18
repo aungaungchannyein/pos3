@@ -99,7 +99,7 @@ if($_SESSION["profile"] == "special"){
                   </div>
                    <input type="hidden" name="productsList" id="productsList">
 
-                  <button type="button" class="btn btn-default hidden-lg btnAddProduct">Add product</button>
+                  <button type="button" class="btn btn-default hidden-lg btnAddProduct" id="btnAddProduct" name="btnAddProduct">Add product</button>
                   <hr>
                   <div class="row">
                     <div class="col-xs-8 pull-right">
